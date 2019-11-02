@@ -38,7 +38,10 @@ Copyright 2016 Google Inc.
         ${fn:escapeXml(person.first)} 
       </h4>
       <h5 class="person-last">${fn:escapeXml(not empty person.last?person.last:'Unknown')}</h5>
-      <p class="person-description">${fn:escapeXml(person.description)}</p>
+      <p class="person-gender">Gender: ${fn:escapeXml(person.gender)}</p>
+      <p class="person-job-title">Job Title: ${fn:escapeXml(person.jobTitle)}</p>
+      <p class="person-interest">Interest: ${fn:escapeXml(person.interest)}</p>
+      <p class="person-description">Description: ${fn:escapeXml(person.description)}</p>
       <small class="person-added-by">Added by
         ${fn:escapeXml(not empty person.createdBy?person.createdBy:'Anonymous')}</small>
     </div>

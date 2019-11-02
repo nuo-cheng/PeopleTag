@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.9.69">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/appengine/appengine-api-1.0-sdk/1.9.69/appengine-api-1.0-sdk-1.9.69.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/appengine/appengine-api-1.0-sdk/1.9.69/appengine-api-1.0-sdk-1.9.69-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/appengine/appengine-api-1.0-sdk/1.9.69/appengine-api-1.0-sdk-1.9.69-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
