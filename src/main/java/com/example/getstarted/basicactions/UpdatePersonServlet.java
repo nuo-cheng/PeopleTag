@@ -92,6 +92,9 @@ public class UpdatePersonServlet extends HttpServlet {
           .id(Long.decode(params.get("id")))
           .createdBy(oldPerson.getCreatedBy())
           .createdById(oldPerson.getCreatedById())
+          .gender(params.get("gender"))
+          .jobTitle(params.get("jobTitle"))
+          .interest(params.get("interest"))
           .build();
       // [END personBuilder]
 

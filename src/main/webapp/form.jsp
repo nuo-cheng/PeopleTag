@@ -33,6 +33,20 @@ Copyright 2016 Google Inc.
       <input type="text" name="last" id="last" value="${fn:escapeXml(person.last)}" class="form-control" />
     </div>
 
+    <div class="form-group">
+          <label for="gender">Gender</label>
+          <input type="text" name="gender" id="gender" value="${fn:escapeXml(person.gender)}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+          <label for="jobTitle">Job Title</label>
+          <input type="text" name="jobTitle" id="jobTitle" value="${fn:escapeXml(person.jobTitle)}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+          <label for="interest">Interest</label>
+          <input type="text" name="interest" id="interest" value="${fn:escapeXml(person.interest)}" class="form-control" />
+    </div>
 
     <div class="form-group">
       <label for="description">Description</label>

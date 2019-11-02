@@ -23,6 +23,10 @@ public class Person {
   private String createdBy;
   private String createdById;
 
+  private String gender;
+  private String jobTitle;
+  private String interest;
+
   private String description;
   private Long id;
   private String imageUrl;
@@ -36,6 +40,11 @@ public class Person {
  
   public static final String FIRST = "first";
   public static final String IMAGE_URL = "imageUrl";
+
+  public static final String GENDER = "gender";
+  public static final String JOB_TITLE = "jobTitle";
+  public static final String INTEREST ="interest";
+
   // [END keys]
 
   // [START constructor]
@@ -49,6 +58,10 @@ public class Person {
     this.description = builder.description;
     this.id = builder.id;
     this.imageUrl = builder.imageUrl;
+    this.gender = builder.gender;
+    this.jobTitle = builder.jobTitle;
+    this.interest = builder.interest;
+
   }
   // [END constructor]
 
@@ -62,6 +75,9 @@ public class Person {
     private String description;
     private Long id;
     private String imageUrl;
+    private String gender;
+    private String jobTitle;
+    private String interest;
 
     public Builder first(String first) {
       this.first = first;
@@ -96,6 +112,21 @@ public class Person {
 
     public Builder imageUrl(String imageUrl) {
       this.imageUrl = imageUrl;
+      return this;
+    }
+
+    public Builder gender(String gender) {
+      this.gender = gender;
+      return this;
+    }
+
+    public Builder jobTitle(String jobTitle) {
+      this.jobTitle = jobTitle;
+      return this;
+    }
+
+    public Builder interest(String interest) {
+      this.interest = interest;
       return this;
     }
 
@@ -159,6 +190,30 @@ public class Person {
 
   public void setImageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
+  }
+
+  public String getGender() {
+    return gender;
+  }
+
+  public String getJobTitle() {
+    return jobTitle;
+  }
+
+  public String getInterest() {
+    return interest;
+  }
+
+  public void setGender(String gender) {
+    this.gender = gender;
+  }
+
+  public void setJobTitle(String jobTitle) {
+    this.jobTitle = jobTitle;
+  }
+
+  public void setInterest(String interest) {
+    this.interest = interest;
   }
 
   // [END builder]

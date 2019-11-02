@@ -57,6 +57,9 @@ public class DatastoreDao implements PersonDao {
         .createdBy((String) entity.getProperty(Person.CREATED_BY))
         .createdById((String) entity.getProperty(Person.CREATED_BY_ID))
         .first((String) entity.getProperty(Person.FIRST))
+        .gender((String) entity.getProperty(Person.GENDER))
+        .jobTitle((String) entity.getProperty(Person.JOB_TITLE))
+        .interest((String) entity.getProperty(Person.INTEREST))
         .build();
   }
   // [END entityToPerson]
@@ -71,6 +74,9 @@ public class DatastoreDao implements PersonDao {
     incPersonEntity.setProperty(Person.IMAGE_URL, person.getImageUrl());
     incPersonEntity.setProperty(Person.CREATED_BY, person.getCreatedBy());
     incPersonEntity.setProperty(Person.CREATED_BY_ID, person.getCreatedById());
+    incPersonEntity.setProperty(Person.GENDER, person.getGender());
+    incPersonEntity.setProperty(Person.JOB_TITLE, person.getJobTitle());
+    incPersonEntity.setProperty(Person.INTEREST, person.getInterest());
 
     Key personKey = datastore.put(incPersonEntity); // Save the Entity
     return personKey.getId();                     // The ID of the Key
@@ -100,6 +106,9 @@ public class DatastoreDao implements PersonDao {
     entity.setProperty(Person.IMAGE_URL, person.getImageUrl());
     entity.setProperty(Person.CREATED_BY, person.getCreatedBy());
     entity.setProperty(Person.CREATED_BY_ID, person.getCreatedById());
+    entity.setProperty(Person.GENDER, person.getGender());
+    entity.setProperty(Person.JOB_TITLE, person.getJobTitle());
+    entity.setProperty(Person.INTEREST, person.getInterest());
 
     datastore.put(entity);                   // Update the Entity
   }

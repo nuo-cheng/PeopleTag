@@ -91,6 +91,9 @@ public class CreatePersonServlet extends HttpServlet {
         .last(params.get("last"))
         .description(params.get("description"))
         .first(params.get("first"))
+        .gender(params.get("gender"))
+        .jobTitle(params.get("jobTitle"))
+        .interest(params.get("interest"))
         .imageUrl(null == newImageUrl ? params.get("imageUrl") : newImageUrl)
         // [START auth]
         .createdBy(createdByString)

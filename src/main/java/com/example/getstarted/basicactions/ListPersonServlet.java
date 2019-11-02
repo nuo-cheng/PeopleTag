@@ -100,7 +100,7 @@ public class ListPersonServlet extends HttpServlet {
     }
     req.setAttribute("cursor", endCursor);
     req.setAttribute("page", "list");
-    req.getRequestDispatcher("/index.jsp").forward(req, resp);
+    req.getRequestDispatcher("/base.jsp").forward(req, resp);
   }
 }
 // [END example]

@@ -52,8 +52,8 @@ public class CloudSqlDao implements PersonDao {
   @Override
   public Long createPerson(Person person) throws SQLException {
     final String createPersonString = "INSERT INTO persons4 "
-        + "(last, createdBy, createdById, description,  first, imageUrl) "
-        + "VALUES (?, ?, ?, ?, ?, ?)";
+        + "(last, createdBy, createdById, description,  first, imageUrl, gender, jobTitle, interest) "
+        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     try (Connection conn = DriverManager.getConnection(sqlUrl);
          final PreparedStatement createPersonStmt = conn.prepareStatement(createPersonString,
              Statement.RETURN_GENERATED_KEYS)) {
@@ -63,6 +63,9 @@ public class CloudSqlDao implements PersonDao {
       createPersonStmt.setString(4, person.getDescription());
       createPersonStmt.setString(6, person.getFirst());
       createPersonStmt.setString(7, person.getImageUrl());
+      createPersonStmt.setString(9, person.getGender());
+      createPersonStmt.setString(10, person.getJobTitle());
+      createPersonStmt.setString(11, person.getInterest());
       createPersonStmt.executeUpdate();
       try (ResultSet keys = createPersonStmt.getGeneratedKeys()) {
         keys.next();
@@ -89,6 +92,9 @@ public class CloudSqlDao implements PersonDao {
             .id(keys.getLong(Person.ID))
             .first(keys.getString(Person.FIRST))
             .imageUrl(keys.getString(Person.IMAGE_URL))
+            .gender(keys.getString(Person.GENDER))
+            .jobTitle(keys.getString(Person.JOB_TITLE))
+            .interest(keys.getString(Person.INTEREST))
             .build();
       }
     }
@@ -110,6 +116,10 @@ public class CloudSqlDao implements PersonDao {
       updatePersonStmt.setString(6, person.getFirst());
       updatePersonStmt.setString(7, person.getImageUrl());
       updatePersonStmt.setLong(8, person.getId());
+      updatePersonStmt.setString(9, person.getGender());
+      updatePersonStmt.setString(10, person.getJobTitle());
+      updatePersonStmt.setString(11, person.getInterest());
+
       updatePersonStmt.executeUpdate();
     }
   }
@@ -151,6 +161,9 @@ public class CloudSqlDao implements PersonDao {
               .id(rs.getLong(Person.ID))
               .first(rs.getString(Person.FIRST))
               .imageUrl(rs.getString(Person.IMAGE_URL))
+              .gender(rs.getString(Person.GENDER))
+              .jobTitle(rs.getString(Person.JOB_TITLE))
+              .interest(rs.getString(Person.INTEREST))
               .build();
           resultPersons.add(person);
         }
@@ -195,6 +208,9 @@ public class CloudSqlDao implements PersonDao {
               .id(rs.getLong(Person.ID))
               .first(rs.getString(Person.FIRST))
               .imageUrl(rs.getString(Person.IMAGE_URL))
+              .gender(rs.getString(Person.GENDER))
+              .jobTitle(rs.getString(Person.JOB_TITLE))
+              .interest(rs.getString(Person.INTEREST))
               .build();
           resultPersons.add(person);
         }
