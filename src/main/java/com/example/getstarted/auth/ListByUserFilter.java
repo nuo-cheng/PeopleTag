@@ -30,6 +30,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Check if user is logged in. If not, add("loginDestination":"/persons/mine") to session
+ * and redirect to /login.If so, chain.doFilter,(if no more filter, go to servlet)
+ */
 public class ListByUserFilter implements Filter {
 
   @Override

@@ -33,11 +33,13 @@ public class LogoutServlet extends HttpServlet {
       throws IOException, ServletException {
     // you can also make an authenticated request to logout, but here we choose to
     // simply delete the session variables for simplicity
+    // return current session if it exists. req.getSession(false) doesn't create a new session
     HttpSession session =  req.getSession(false);
     if (session != null) {
       session.invalidate();
     }
     // rebuild session
+    // create a new session since no session exists now
     req.getSession();
   }
 }
