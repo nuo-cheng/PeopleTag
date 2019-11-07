@@ -129,6 +129,15 @@
       <servlet-name>listbyuser</servlet-name>
       <url-pattern>/persons/mine</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>listcollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.ListCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listcollection</servlet-name>
+        <url-pattern>/collections</url-pattern>
+    </servlet-mapping>
 
     <!-- [START config] -->
     <context-param>

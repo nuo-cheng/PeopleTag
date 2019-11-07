@@ -15,7 +15,7 @@ public interface CollectionDao {
 
     void deletePerson(Long collectionId) throws SQLException;
 
-    Result<Person> listCollections(String startCursor) throws SQLException;
+    Result<Collection> listCollections(String startCursor) throws SQLException;
 
-    Result<Person> listCollecitonsByUser(String collectionId, String startCursor) throws SQLException;
+    Result<Collection> listCollecitonsByUser(String collectionId, String startCursor) throws SQLException;
 }

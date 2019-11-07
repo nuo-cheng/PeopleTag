@@ -1,6 +1,7 @@
 package com.example.getstarted.daos;
 
 import com.example.getstarted.objects.Assoc;
+import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Result;
 import com.google.appengine.api.datastore.*;
 
@@ -56,6 +57,7 @@ public class AssocDaoImplement implements AssocDao{
             .setFilter(new Query.FilterPredicate(
                     Assoc.PERSON_ID, Query.FilterOperator.EQUAL,personId))
                 .addSort(Assoc.COLLECTION_ID, Query.SortDirection.ASCENDING);
+
         PreparedQuery preparedQuery=datastore.prepare(query);
         QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator(fetchOptions);
         List<Assoc> resultAssocs = entitiesToAssocs(results);
