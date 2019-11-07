@@ -35,7 +35,7 @@ Copyright 2016 Google Inc.
         <button class="w3-btn w3-round-large w3-orange">Register</button>
         <button class="w3-btn w3-round-large w3-green">Login</button>
       </div>
-
+    </div>
   </body>
 </html>
 <!-- [END base]-->
