@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Weiyiqi
-  Date: 11/6/19
-  Time: 4:51 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%--jsp showing all collections of one user--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div class="container">
@@ -20,7 +14,7 @@
         <c:otherwise>
             <c:forEach items="${collections}" var="collection">
                 <div class="media">
-                    <a href="/readcolleciton?id=${collection.id}">
+                    <a href="/readcolleciton?collectionid=${collection.id}">
                         <div class="media-left">
                             <img alt="ahhh" height="200"src="${fn:escapeXml(not empty collection.imageUrl?collection.imageUrl:'http://placekitten.com/g/128/192')}">
                         </div>

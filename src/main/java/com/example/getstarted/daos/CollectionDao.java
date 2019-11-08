@@ -1,19 +1,18 @@
 package com.example.getstarted.daos;
 
 import com.example.getstarted.objects.Collection;
-import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Result;
 
 import java.sql.SQLException;
 
 public interface CollectionDao {
-    Long createPerson(Collection collection) throws SQLException;
+    Long createCollection(Collection collection) throws SQLException;
 
-    Person readPerson(Long CollectionId) throws SQLException;
+    Collection readCollection(Long CollectionId) throws SQLException;
 
-    void updatePerson(Collection collection) throws SQLException;
+    void updateCollection(Collection collection) throws SQLException;
 
-    void deletePerson(Long collectionId) throws SQLException;
+    void deleteCollection(Long collectionId) throws SQLException;
 
     Result<Collection> listCollections(String startCursor) throws SQLException;
 

@@ -139,6 +139,15 @@
         <url-pattern>/collections</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>readcollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.ReadCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>readcollection</servlet-name>
+        <url-pattern>/readcolleciton</url-pattern>
+    </servlet-mapping>
+
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>
