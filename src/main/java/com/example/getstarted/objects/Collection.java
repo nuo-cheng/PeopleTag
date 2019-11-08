@@ -21,6 +21,7 @@ public class Collection {
   // [START collection]
   private String collectionName;
   private Long id;
+  private String description;
   private String createdBy;
   private String createdById;
 
@@ -28,6 +29,7 @@ public class Collection {
   // [START keys]
   public static final String COLLECTION_NAME = "collectionName";
   public static final String ID = "id";
+  public static final String DESCRIPTION = "description";
   public static final String CREATED_BY = "createdBy";
   public static final String CREATED_BY_ID = "createdById";
 
@@ -38,6 +40,7 @@ public class Collection {
   private Collection(Builder builder) {
     this.collectionName = builder.collectionName;
     this.id = builder.id;
+    this.description = builder.description;
     this.createdBy = builder.createdBy;
     this.createdById = builder.createdById;
 
@@ -48,6 +51,7 @@ public class Collection {
   public static class Builder {
     private String collectionName;
     private Long id;
+    private String description;
     private String createdBy;
     private String createdById;
 
@@ -58,6 +62,11 @@ public class Collection {
 
     public Builder id(Long id) {
       this.id = id;
+      return this;
+    }
+
+    public Builder description(String description){
+      this.description = description;
       return this;
     }
 
@@ -92,6 +101,14 @@ public class Collection {
     this.id = id;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public String getCreatedBy() {
     return createdBy;
   }
@@ -112,7 +129,7 @@ public class Collection {
   @Override
   public String toString() {
     return
-        "Collection Name: " + collectionName  + ", Added by: " + createdBy;
+        "Collection Name: " + collectionName  + "Collection Description: " + description + ", Added by: " + createdBy;
   }
 }
 // [END example]
