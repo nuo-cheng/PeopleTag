@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // [START example]
-public class CloudSqlDao implements PersonDao {
+public class CloudSqlDao implements PersonDao{
   // [START constructor]
   private String sqlUrl;
 
