@@ -43,6 +43,7 @@ public class CollectionDaoImplement implements CollectionDao {
     return new Collection.Builder()                                     // Convert to Person form
         .collectionName((String) entity.getProperty(Collection.COLLECTION_NAME))
         .id(entity.getKey().getId())
+        .description((String) entity.getProperty(Collection.DESCRIPTION))
         .createdBy((String) entity.getProperty(Collection.CREATED_BY))
         .createdById((String) entity.getProperty(Collection.CREATED_BY_ID))
         .build();
@@ -54,6 +55,7 @@ public class CollectionDaoImplement implements CollectionDao {
   public Long createCollection(Collection collection) {
     Entity incCollectionEntity = new Entity(COLLECTION_KIND);  // Key will be assigned once written
     incCollectionEntity.setProperty(Collection.COLLECTION_NAME, collection.getCollectionName());
+    incCollectionEntity.setProperty(Collection.DESCRIPTION, collection.getDescription());
     incCollectionEntity.setProperty(Collection.CREATED_BY, collection.getCreatedBy());
     incCollectionEntity.setProperty(Collection.CREATED_BY_ID, collection.getCreatedById());
 
@@ -80,6 +82,7 @@ public class CollectionDaoImplement implements CollectionDao {
     Key key = KeyFactory.createKey(COLLECTION_KIND, collection.getId());  // From a person, create a Key
     Entity entity = new Entity(key);         // Convert Person to an Entity
     entity.setProperty(Collection.COLLECTION_NAME, collection.getCollectionName());
+    entity.setProperty(Collection.DESCRIPTION, collection.getDescription());
     entity.setProperty(Collection.CREATED_BY, collection.getCreatedBy());
     entity.setProperty(Collection.CREATED_BY_ID, collection.getCreatedById());
 

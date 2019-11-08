@@ -45,8 +45,8 @@ public class CreateCollectionServlet extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {
     req.setAttribute("action", "Add");          // Part of the Header in form.jsp
-    req.setAttribute("destination", "create");  // The urlPattern to invoke (this Servlet)
-    req.setAttribute("page", "form");           // Tells base.jsp to include form.jsp
+    req.setAttribute("destination", "createcollection");  // The urlPattern to invoke (this Servlet)
+    req.setAttribute("page", "collectionform");           // Tells base.jsp to include form.jsp
     req.getRequestDispatcher("/base.jsp").forward(req, resp);
   }
   // [END setup]
@@ -89,6 +89,7 @@ public class CreateCollectionServlet extends HttpServlet {
     // [START personBuilder]
     Collection collection = new Collection.Builder()
         .collectionName(params.get("collectionName"))
+        .description(params.get("description"))
         // [START auth]
         .createdBy(createdByString)
         .createdById(createdByIdString)
