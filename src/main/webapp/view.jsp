@@ -27,6 +27,10 @@ Copyright 2016 Google Inc.
       <i class="glyphicon glyphicon-trash"></i>
       Delete person
     </a>
+      <a href="/addtocollection?id=${person.id}" class="btn btn-success btn-sm">
+          <i class="glyphicon glyphicon glyphicon-plus-sign"></i>
+          Add to collection
+      </a>
   </div>
 
   <div class="media">

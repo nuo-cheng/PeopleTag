@@ -1,3 +1,4 @@
+
 /* Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,9 +18,11 @@ package com.example.getstarted.daos;
 
 import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Person;
+
 import com.example.getstarted.objects.Result;
 
 import java.sql.SQLException;
+
 
 // [START example]
 public interface CollectionDao {
@@ -38,3 +41,4 @@ public interface CollectionDao {
   Result<Collection> listCollectionsByUser(String userId, String startCursor) throws SQLException;
 }
 // [END example]
+

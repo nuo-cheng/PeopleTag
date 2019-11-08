@@ -29,6 +29,10 @@ import javax.servlet.http.HttpServletResponse;
 
 // [START example]
 @SuppressWarnings("serial")
+/**
+ * Confirm user logged in or not by userfactory.If so redirect to destination.
+ * If not redirect to /login.
+ */
 public class LoginServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)

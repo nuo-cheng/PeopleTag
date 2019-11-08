@@ -30,13 +30,20 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// [START init]
-public class LogoutFilter implements Filter {
-  // [END init]
 
+
+/**
+ * Check if user logged in. If so, create a logout url, and redirect to it.
+ * If not redirect to /persons.
+ */
+public class LogoutFilter implements Filter {
+
+// [START init]
   @Override
   public void init(FilterConfig config) throws ServletException {
   }
+  // [END init]
+
 
   @Override
   public void doFilter(ServletRequest servletReq, ServletResponse servletResp, FilterChain chain)
