@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div class="container">
     <h3>Collections</h3>
-    <a href="/createCollection" class="btn btn-success btn-sm">
+    <a href="/createcollection" class="btn btn-success btn-sm">
         <i class="glyphicon glyphicon-plus"></i>
         Add Collection
     </a>

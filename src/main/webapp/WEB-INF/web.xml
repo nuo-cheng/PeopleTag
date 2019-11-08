@@ -165,7 +165,16 @@
         <servlet-name>finishaddtocollection</servlet-name>
         <url-pattern>/finishaddtocollection</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet>
+        <servlet-name>createcollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.ReadCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createcollection</servlet-name>
+        <url-pattern>/createcollection</url-pattern>
+    </servlet-mapping>
+
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>

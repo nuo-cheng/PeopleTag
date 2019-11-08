@@ -29,7 +29,7 @@ public class ListCollectionServlet extends HttpServlet {
         }
         req.getSession().getServletContext().setAttribute("collections", collections);
         req.setAttribute("cursor", endCursor);
-        req.setAttribute("page", "collectionslist");
+        req.setAttribute("page", "collectionlist");
         req.getRequestDispatcher("/base.jsp").forward(req, resp);
     }
 }
