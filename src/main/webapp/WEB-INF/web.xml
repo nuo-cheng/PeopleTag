@@ -148,6 +148,24 @@
         <url-pattern>/readcolleciton</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addtocollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.AddToCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addtocollection</servlet-name>
+        <url-pattern>/addtocollection</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>finishaddtocollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.FinishAddToCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>finishaddtocollection</servlet-name>
+        <url-pattern>/finishaddtocollection</url-pattern>
+    </servlet-mapping>
+    
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>
