@@ -16,16 +16,16 @@ import java.util.List;
 public class ListCollectionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CollectionDao dao = new CollectionDaoImplement();
+        CollectionDao dao = (CollectionDao) this.getServletContext().getAttribute("collectiondao");
         String startCursor = req.getParameter("cursor");
         List<Collection> collections = null;
         String endCursor = null;
         try {
-            Result<Collection> result = dao.listCollections(startCursor);
+            Result<Collection> result = dao.listCollections(null);
             collections = result.result;
             endCursor = result.cursor;
         } catch (Exception e) {
-            throw new ServletException("Error listing persons", e);
+            throw new ServletException("Error listing collections", e);
         }
         req.getSession().getServletContext().setAttribute("collections", collections);
         req.setAttribute("cursor", endCursor);

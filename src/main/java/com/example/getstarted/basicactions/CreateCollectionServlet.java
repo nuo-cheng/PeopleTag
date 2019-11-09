@@ -16,6 +16,7 @@
 package com.example.getstarted.basicactions;
 
 import com.example.getstarted.daos.CollectionDao;
+import com.example.getstarted.daos.CollectionDaoImplement;
 import com.example.getstarted.daos.PersonDao;
 import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Person;
@@ -97,10 +98,10 @@ public class CreateCollectionServlet extends HttpServlet {
         .build();
     // [END personBuilder]
 
-    CollectionDao dao = (CollectionDao) this.getServletContext().getAttribute("dao");
+    CollectionDao dao = (CollectionDao) this.getServletContext().getAttribute("collectiondao");
     try {
       Long id = dao.createCollection(collection);
-      resp.sendRedirect("/read?id=" + id.toString());   // read what we just wrote
+      resp.sendRedirect("/collections");   // read what we just wrote
     } catch (Exception e) {
       throw new ServletException("Error creating person", e);
     }

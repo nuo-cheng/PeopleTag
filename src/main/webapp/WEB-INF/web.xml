@@ -145,7 +145,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>readcollection</servlet-name>
-        <url-pattern>/readcolleciton</url-pattern>
+        <url-pattern>/readcollection</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -168,7 +168,7 @@
 
     <servlet>
         <servlet-name>createcollection</servlet-name>
-        <servlet-class>com.example.getstarted.basicactions.ReadCollectionServlet</servlet-class>
+        <servlet-class>com.example.getstarted.basicactions.CreateCollectionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createcollection</servlet-name>

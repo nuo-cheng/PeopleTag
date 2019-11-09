@@ -22,7 +22,7 @@ public class AddToCollectionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long personId=Long.decode(request.getParameter("id"));
-        CollectionDao dao = new CollectionDaoImplement();
+        CollectionDao dao = (CollectionDao) this.getServletContext().getAttribute("collectiondao");
         String startCursor = request.getParameter("cursor");
         List<Collection> collections = null;
         String endCursor = null;
@@ -34,7 +34,7 @@ public class AddToCollectionServlet extends HttpServlet {
             throw new ServletException("Error listing persons", e);
         }
         request.getSession().getServletContext().setAttribute("collections", collections);
-        request.getSession().setAttribute("personid",personId);
+        request.getSession().getServletContext().setAttribute("personidtoadd",personId);
         request.getSession().setAttribute("page","addtocollection");
         request.getRequestDispatcher("/base.jsp").forward(request,response);
     }

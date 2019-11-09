@@ -33,12 +33,6 @@ Copyright 2016 Google Inc.
       <input type="text" name="description" id="description" value="${fn:escapeXml(collection.description)}" class="form-control" />
     </div>
 
-
-    <div class="form-group ${isCloudStorageConfigured ? '' : 'hidden'}">
-      <label for="image">Cover Image</label>
-      <input type="file" name="file" id="file" class="form-control" />
-    </div>
-
     <div class="form-group hidden">
       <label for="imageUrl">Cover Image URL</label>
       <input type="hidden" name="id" value="${person.id}" />

@@ -193,8 +193,6 @@ public class DatastoreSessionFilter implements Filter {
   /**
    * Stores the state value in each key-value pair in the project's datastore.
    * @param sessionId Request from which to extract session.
-   * @param varName the name of the desired session variable
-   * @param varValue the value of the desired session variable
    */
   protected void setSessionVariables(String sessionId, Map<String, String> setMap) {
     if (sessionId.equals("")) {

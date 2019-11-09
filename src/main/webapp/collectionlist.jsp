@@ -8,18 +8,15 @@
         Add Collection
     </a>
     <c:choose>
-        <c:when test="${empty colleciton}">
+        <c:when test="${empty collections}">
             <p>No collections found</p>
         </c:when>
         <c:otherwise>
             <c:forEach items="${collections}" var="collection">
                 <div class="media">
-                    <a href="/readcolleciton?collectionid=${collection.id}">
-                        <div class="media-left">
-                            <img alt="ahhh" height="200"src="${fn:escapeXml(not empty collection.imageUrl?collection.imageUrl:'http://placekitten.com/g/128/192')}">
-                        </div>
+                    <a href="/readcollection?collectionid=${collection.id}">
                         <div class="media-body">
-                            <h4>${fn:escapeXml(collection.name)}</h4>
+                            <h4>${collection.collectionName}</h4>
                         </div>
                     </a>
                 </div>
@@ -27,7 +24,7 @@
             <c:if test="${not empty cursor}">
                 <nav>
                     <ul class="pager">
-                        <li><a href="?cursor=${fn:escapeXml(cursor)}">More</a></li>
+                        <li><a href="?cursor=${cursor}">More</a></li>
                     </ul>
                 </nav>
             </c:if>

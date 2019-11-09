@@ -15,9 +15,7 @@
 
 package com.example.getstarted.basicactions;
 
-import com.example.getstarted.daos.PersonDao;
-import com.example.getstarted.daos.CloudSqlDao;
-import com.example.getstarted.daos.DatastoreDao;
+import com.example.getstarted.daos.*;
 import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Result;
 import com.example.getstarted.util.CloudStorageHelper;
@@ -40,6 +38,8 @@ public class ListPersonServlet extends HttpServlet {
   @Override
   public void init() throws ServletException {
     PersonDao dao = null;
+    CollectionDao collectionDao=null;
+    AssocDao assocDao=null;
 
     CloudStorageHelper storageHelper = new CloudStorageHelper();
 
@@ -48,6 +48,8 @@ public class ListPersonServlet extends HttpServlet {
     switch (storageType) {
       case "datastore":
         dao = new DatastoreDao();
+        collectionDao=new CollectionDaoImplement();
+        assocDao=new AssocDaoImplement();
         break;
       case "cloudsql":
         try {
@@ -73,6 +75,9 @@ public class ListPersonServlet extends HttpServlet {
             "Invalid storage type. Check if personshelf.storageType property is set.");
     }
     this.getServletContext().setAttribute("dao", dao);
+    this.getServletContext().setAttribute("collectiondao", collectionDao);
+    this.getServletContext().setAttribute("assocdao", assocDao);
+
     this.getServletContext().setAttribute("storageHelper", storageHelper);
     this.getServletContext().setAttribute(
         "isCloudStorageConfigured",  // Hide upload when Cloud Storage is not configured.

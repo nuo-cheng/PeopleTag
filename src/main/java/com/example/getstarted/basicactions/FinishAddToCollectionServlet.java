@@ -19,9 +19,8 @@ public class FinishAddToCollectionServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session=request.getSession();
         Long collectionId=Long.decode(request.getParameter("collectionid"));
-        Long personId=(Long)session.getAttribute("personid");
+        Long personId=(Long)request.getSession().getServletContext().getAttribute("personidtoadd");
         AssocDao assocDao=new AssocDaoImplement();
         try {
             assocDao.createAssoc(personId, collectionId);

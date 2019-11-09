@@ -18,15 +18,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ReadCollectionServlet")
 public class ReadCollectionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("******");
         Long collectionId=Long.decode(request.getParameter("collectionid"));
-        AssocDao assocDao=new AssocDaoImplement();
-        DatastoreDao dao=new DatastoreDao();
-        CollectionDao collectionDao=new CollectionDaoImplement();
+        AssocDao assocDao=(AssocDao) this.getServletContext().getAttribute("assocdao");
+        DatastoreDao dao=(DatastoreDao) this.getServletContext().getAttribute("dao");
+        CollectionDao collectionDao=(CollectionDao) this.getServletContext().getAttribute("collectiondao");
         Collection collection;
         List<Long> personIds;
+
         List<Person> persons=new ArrayList<>();
         try{
             collection=collectionDao.readCollection(collectionId);
@@ -40,14 +45,12 @@ public class ReadCollectionServlet extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException("Error listing persons", e);
         }
+
+        System.out.println("===============" + personIds);
         request.setAttribute("collection",collection);
         request.getSession().getServletContext().setAttribute("persons", persons);
-        request.getSession().setAttribute("collectionview", "list");
+        request.getSession().setAttribute("page", "collectionview");
         request.getRequestDispatcher("/base.jsp").forward(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }
 
