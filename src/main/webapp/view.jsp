@@ -50,5 +50,30 @@ Copyright 2016 Google Inc.
         ${fn:escapeXml(not empty person.createdBy?person.createdBy:'Anonymous')}</small>
     </div>
   </div>
+    <h3>Collections including ${fn:escapeXml(person.first)} </h3>
+    <c:choose>
+        <c:when test="${empty collectionsofperson}">
+            <p>No collections found</p>
+        </c:when>
+        <c:otherwise>
+            <c:forEach items="${collectionsofperson}" var="collection">
+                <div class="media">
+                    <a href="/readcollection?collectionid=${collection.id}">
+                        <div class="media-body">
+                            <h4>${collection.collectionName}</h4>
+                        </div>
+                    </a>
+                </div>
+            </c:forEach>
+            <c:if test="${not empty cursor}">
+                <nav>
+                    <ul class="pager">
+                        <li><a href="?cursor=${cursor}">More</a></li>
+                    </ul>
+                </nav>
+            </c:if>
+        </c:otherwise>
+    </c:choose>
 </div>
+
 <!-- [END view] -->

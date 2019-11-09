@@ -15,10 +15,15 @@
 
 package com.example.getstarted.basicactions;
 
+import com.example.getstarted.daos.AssocDao;
+import com.example.getstarted.daos.CollectionDao;
 import com.example.getstarted.daos.PersonDao;
+import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Person;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,11 +39,25 @@ public class ReadPersonServlet extends HttpServlet {
       ServletException {
     Long id = Long.decode(req.getParameter("id"));
     PersonDao dao = (PersonDao) this.getServletContext().getAttribute("dao");
+    AssocDao assocDao=(AssocDao) this.getServletContext().getAttribute("assocdao");
+    CollectionDao collectionDao=(CollectionDao) this.getServletContext().getAttribute("collectiondao");
+    List<Collection> collections=new ArrayList<>();
+    List<Long> collectionIds;
     try {
       Person person = dao.readPerson(id);
+      collectionIds=assocDao.readCollections(id,null);
+      System.out.println(collectionIds);
+      for(int i=0;i<collectionIds.size();i++){
+        Long collectionId=collectionIds.get(i);
+        Collection collection=collectionDao.readCollection(collectionId);
+        collections.add(collection);
+      }
+      System.out.println(collections);
       req.setAttribute("person", person);
       req.setAttribute("page", "view");
+      req.getSession().getServletContext().setAttribute("collectionsofperson",collections);
       req.getRequestDispatcher("/base.jsp").forward(req, resp);
+
     } catch (Exception e) {
       throw new ServletException("Error reading person", e);
     }

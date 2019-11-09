@@ -24,7 +24,6 @@ public class ReadCollectionServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("******");
         Long collectionId=Long.decode(request.getParameter("collectionid"));
         AssocDao assocDao=(AssocDao) this.getServletContext().getAttribute("assocdao");
         DatastoreDao dao=(DatastoreDao) this.getServletContext().getAttribute("dao");
@@ -45,8 +44,6 @@ public class ReadCollectionServlet extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException("Error listing persons", e);
         }
-
-        System.out.println("===============" + personIds);
         request.setAttribute("collection",collection);
         request.getSession().getServletContext().setAttribute("persons", persons);
         request.getSession().setAttribute("page", "collectionview");
