@@ -36,7 +36,7 @@ public class ListCollectionByUserServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException,
         ServletException {
-    CollectionDao dao = (CollectionDao) this.getServletContext().getAttribute("dao");
+    CollectionDao dao = (CollectionDao) this.getServletContext().getAttribute("collectiondao");
     String startCursor = req.getParameter("cursor");
     List<Collection> collections = null;
     String endCursor = null;
@@ -49,12 +49,8 @@ public class ListCollectionByUserServlet extends HttpServlet {
       throw new ServletException("Error listing collections", e);
     }
     req.getSession().getServletContext().setAttribute("collections", collections);
-    StringBuilder collectionNames = new StringBuilder();
-    for (Collection collection : collections) {
-      collectionNames.append(collection.getCollectionName() + " ");
-    }
     req.getSession().setAttribute("cursor", endCursor);
-    req.getSession().setAttribute("page", "list");
+    req.getSession().setAttribute("page", "collectionlist");
     req.getRequestDispatcher("/base.jsp").forward(req, resp);
   }
 }
