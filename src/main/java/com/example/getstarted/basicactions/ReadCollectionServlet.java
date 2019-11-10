@@ -5,6 +5,7 @@ import com.example.getstarted.daos.*;
 
 import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Person;
+import com.example.getstarted.objects.Result;
 
 import javax.servlet.ServletException;
 

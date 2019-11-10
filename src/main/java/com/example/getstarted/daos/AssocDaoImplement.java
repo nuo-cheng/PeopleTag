@@ -6,7 +6,9 @@ import com.example.getstarted.objects.Result;
 import com.google.appengine.api.datastore.*;
 
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,6 +33,23 @@ public class AssocDaoImplement implements AssocDao{
         assocEntity.setProperty(Assoc.PERSON_ID,personId);
         Key assocKey=datastore.put(assocEntity);
         return assocKey.getId();
+    }
+
+    public Long getAssocId(Long personId, Long collectionId){
+        Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
+                Query.CompositeFilterOperator.AND, Arrays.<Query.Filter>asList(
+                new Query.FilterPredicate(Assoc.PERSON_ID, Query.FilterOperator.EQUAL, personId),
+                new Query.FilterPredicate(Assoc.COLLECTION_ID, Query.FilterOperator.EQUAL, collectionId)));
+        Query query = new Query(ASSOC_KIND).setFilter(advancedFilter);
+        System.out.println(query);
+        PreparedQuery preparedQuery = datastore.prepare(query);
+        QueryResultIterator<Entity> results=preparedQuery.asQueryResultIterator();
+        assert(results.hasNext());
+        Entity entity=results.next();
+        assert(null != entity);
+        System.out.println(entity.getKey().getId());
+//        return (Long)entity.getProperty(Assoc.ID);
+        return entity.getKey().getId();
     }
 
     @Override
