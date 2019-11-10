@@ -37,8 +37,10 @@ public class DeleteCollectionServlet extends HttpServlet {
     try {
       //delete related assocs
       List<Long> assocIds=assocDao.getAssocIdsFromCollectionId(id);
-      for(int i=0;i<assocIds.size();i++){
-        assocDao.deleteAssoc(assocIds.get(i));
+      if(!assocIds.isEmpty()){
+        for(int i=0;i<assocIds.size();i++){
+          assocDao.deleteAssoc(assocIds.get(i));
+        }
       }
       //delete collection
       collectiondaodao.deleteCollection(id);

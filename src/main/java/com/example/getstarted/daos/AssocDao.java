@@ -34,4 +34,6 @@ public interface AssocDao {
     List<Long> readPersons(Long collectionId, String startCursorString);
 
     List<Long> getAssocIdsFromCollectionId(Long collectionId);
+
+    List<Long> getAssocIdsFromPersonId(Long personId);
 }
