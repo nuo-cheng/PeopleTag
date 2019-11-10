@@ -15,14 +15,14 @@
 
 package com.example.getstarted.basicactions;
 
+import com.example.getstarted.daos.AssocDao;
 import com.example.getstarted.daos.CollectionDao;
-import com.example.getstarted.daos.PersonDao;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 // [START example]
 @SuppressWarnings("serial")
@@ -32,10 +32,17 @@ public class DeleteCollectionServlet extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {
     Long id = Long.decode(req.getParameter("id"));
-    CollectionDao dao = (CollectionDao) this.getServletContext().getAttribute("dao");
+    CollectionDao collectiondaodao = (CollectionDao) this.getServletContext().getAttribute("collectiondao");
+    AssocDao assocDao=(AssocDao)this.getServletContext().getAttribute("assocdao");
     try {
-      dao.deleteCollection(id);
-      resp.sendRedirect("/collection");
+      //delete related assocs
+      List<Long> assocIds=assocDao.getAssocIdsFromCollectionId(id);
+      for(int i=0;i<assocIds.size();i++){
+        assocDao.deleteAssoc(assocIds.get(i));
+      }
+      //delete collection
+      collectiondaodao.deleteCollection(id);
+      resp.sendRedirect("/collections");
     } catch (Exception e) {
       throw new ServletException("Error deleting person", e);
     }

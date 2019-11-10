@@ -32,7 +32,8 @@ limitations under the License.
         <ul class="nav navbar-nav">
             <li><a href="/">Persons</a></li>
             <li><a href="/persons/mine">My Persons</a></li>
-            <li><a href="/collections">My Collections</a></li>
+            <li><a href="/collections">Collections</a></li>
+            <li><a href="/mycollections">My Collections</a></li>
         </ul>
         <p class="navbar-text navbar-right">
             <c:choose>

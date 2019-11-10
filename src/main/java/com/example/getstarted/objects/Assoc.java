@@ -32,4 +32,8 @@ public class Assoc {
     public Long getCollectionId() {
         return collectionId;
     }
+
+    public Long getId() {
+        return id;
+    }
 }

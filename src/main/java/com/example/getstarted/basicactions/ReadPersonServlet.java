@@ -46,18 +46,15 @@ public class ReadPersonServlet extends HttpServlet {
     try {
       Person person = dao.readPerson(id);
       collectionIds=assocDao.readCollections(id,null);
-      System.out.println(collectionIds);
       for(int i=0;i<collectionIds.size();i++){
         Long collectionId=collectionIds.get(i);
         Collection collection=collectionDao.readCollection(collectionId);
         collections.add(collection);
       }
-      System.out.println(collections);
       req.setAttribute("person", person);
       req.setAttribute("page", "view");
       req.getSession().getServletContext().setAttribute("collectionsofperson",collections);
       req.getRequestDispatcher("/base.jsp").forward(req, resp);
-
     } catch (Exception e) {
       throw new ServletException("Error reading person", e);
     }
