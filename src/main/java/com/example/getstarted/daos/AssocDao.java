@@ -40,4 +40,12 @@ public interface AssocDao {
      * @return
      */
      Long getAssocId(Long personId, Long collectionId);
+
+    /**
+     * check is a person already in a collection when adding
+     * @param personId
+     * @param collectionId
+     * @return
+     */
+    boolean isAlreadyIn(Long personId, Long collectionId);
 }

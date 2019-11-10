@@ -41,7 +41,7 @@ public class AssocDaoImplement implements AssocDao{
                 new Query.FilterPredicate(Assoc.PERSON_ID, Query.FilterOperator.EQUAL, personId),
                 new Query.FilterPredicate(Assoc.COLLECTION_ID, Query.FilterOperator.EQUAL, collectionId)));
         Query query = new Query(ASSOC_KIND).setFilter(advancedFilter);
-        System.out.println(query);
+        //System.out.println(query);
         PreparedQuery preparedQuery = datastore.prepare(query);
         QueryResultIterator<Entity> results=preparedQuery.asQueryResultIterator();
         assert(results.hasNext());
@@ -50,6 +50,21 @@ public class AssocDaoImplement implements AssocDao{
         System.out.println(entity.getKey().getId());
 //        return (Long)entity.getProperty(Assoc.ID);
         return entity.getKey().getId();
+    }
+
+    public boolean isAlreadyIn(Long personId, Long collectionId){
+        Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
+                Query.CompositeFilterOperator.AND, Arrays.<Query.Filter>asList(
+                new Query.FilterPredicate(Assoc.PERSON_ID, Query.FilterOperator.EQUAL, personId),
+                new Query.FilterPredicate(Assoc.COLLECTION_ID, Query.FilterOperator.EQUAL, collectionId)));
+        Query query = new Query(ASSOC_KIND).setFilter(advancedFilter);
+        PreparedQuery preparedQuery = datastore.prepare(query);
+        QueryResultIterator<Entity> results=preparedQuery.asQueryResultIterator();
+        if (results.hasNext()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
