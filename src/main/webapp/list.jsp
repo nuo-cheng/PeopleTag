@@ -16,12 +16,33 @@ Copyright 2016 Google Inc.
 <!-- [START list] -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: 360px 360px 360px ;
+  grid-gap: 10px;
+  background-color: #FFFFFF;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(240, 128, 128, 0.3);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+</style>
+
+
 <div class="container">
   <h3>Persons</h3>
   <a href="/create" class="btn btn-success btn-sm">
     <i class="glyphicon glyphicon-plus"></i>
     Add person
   </a>
+  <br />
+  <br />
+  <div class="grid-container">
   <c:choose>
   <c:when test="${empty persons}">
   <p>No persons found</p>
@@ -31,7 +52,7 @@ Copyright 2016 Google Inc.
   <div class="media">
     <a href="/read?id=${person.id}">
       <div class="media-left">
-        <img alt="ahhh" height="200"src="${fn:escapeXml(not empty person.imageUrl?person.imageUrl:'http://placekitten.com/g/128/192')}">
+        <img alt="ahhh" hspace="15"height="200"src="${fn:escapeXml(not empty person.imageUrl?person.imageUrl:'http://placekitten.com/g/128/192')}">
       </div>
       <div class="media-body">
         <h4>${fn:escapeXml(person.first)}</h4>

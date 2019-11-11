@@ -135,7 +135,7 @@ public class DatastoreDao implements PersonDao {
   // [START listpersons]
   @Override
   public Result<Person> listPersons(String startCursorString) {
-    FetchOptions fetchOptions = FetchOptions.Builder.withLimit(10); // Only show 10 at a time
+    FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
     if (startCursorString != null && !startCursorString.equals("")) {
       fetchOptions.startCursor(Cursor.fromWebSafeString(startCursorString)); // Where we left off
     }
@@ -145,7 +145,7 @@ public class DatastoreDao implements PersonDao {
     QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator(fetchOptions);
     List<Person> resultPersons = entitiesToPersons(results);     // Retrieve and convert Entities
     Cursor cursor = results.getCursor();              // Where to start next time
-    if (cursor != null && resultPersons.size() == 10) {         // Are we paging? Save Cursor
+    if (cursor != null && resultPersons.size() == 9) {         // Are we paging? Save Cursor
       String cursorString = cursor.toWebSafeString();               // Cursors are WebSafe
       return new Result<>(resultPersons, cursorString);
     } else {
@@ -157,7 +157,7 @@ public class DatastoreDao implements PersonDao {
   // [START listbyuser]
   @Override
   public Result<Person> listPersonsByUser(String userId, String startCursorString) {
-    FetchOptions fetchOptions = FetchOptions.Builder.withLimit(10); // Only show 10 at a time
+    FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
     if (startCursorString != null && !startCursorString.equals("")) {
       fetchOptions.startCursor(Cursor.fromWebSafeString(startCursorString)); // Where we left off
     }
@@ -172,7 +172,7 @@ public class DatastoreDao implements PersonDao {
     QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator(fetchOptions);
     List<Person> resultPersons = entitiesToPersons(results);     // Retrieve and convert Entities
     Cursor cursor = results.getCursor();              // Where to start next time
-    if (cursor != null && resultPersons.size() == 10) {         // Are we paging? Save Cursor
+    if (cursor != null && resultPersons.size() == 9) {         // Are we paging? Save Cursor
       String cursorString = cursor.toWebSafeString();               // Cursors are WebSafe
       return new Result<>(resultPersons, cursorString);
     } else {

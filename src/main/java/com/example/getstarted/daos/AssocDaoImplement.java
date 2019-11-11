@@ -83,7 +83,7 @@ public class AssocDaoImplement implements AssocDao{
 
     @Override
     public Result<Long> readCollections(Long personId, String startCursorString) {
-        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(10); // Only show 10 at a time
+        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
         if (startCursorString != null && !startCursorString.equals("")) {
             fetchOptions.startCursor(Cursor.fromWebSafeString(startCursorString)); // Where we left off
         }
@@ -97,7 +97,7 @@ public class AssocDaoImplement implements AssocDao{
         List<Assoc> resultAssocs = entitiesToAssocs(results);
         Cursor cursor = results.getCursor();// Where to start next time
         Result<Assoc> resultAssoc;
-        if (cursor != null && resultAssocs.size() == 10) {         // Are we paging? Save Cursor
+        if (cursor != null && resultAssocs.size() == 9) {         // Are we paging? Save Cursor
             String cursorString = cursor.toWebSafeString();               // Cursors are WebSafe
             resultAssoc= new Result<>(resultAssocs, cursorString);
         } else {
@@ -107,7 +107,7 @@ public class AssocDaoImplement implements AssocDao{
         for(int i=0;i<resultAssoc.result.size();i++){
             collectionIds.add(resultAssoc.result.get(i).getCollectionId());
         }
-        if (cursor != null && collectionIds.size() == 10) {         // Are we paging? Save Cursor
+        if (cursor != null && collectionIds.size() == 9) {         // Are we paging? Save Cursor
             return new Result<>(collectionIds, cursor.toWebSafeString());
         } else {
             return new Result<>(collectionIds);
@@ -116,7 +116,7 @@ public class AssocDaoImplement implements AssocDao{
 
     @Override
     public Result<Long> readPersons(Long collectionId, String startCursorString) {
-        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(10); // Only show 10 at a time
+        FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
         if (startCursorString != null && !startCursorString.equals("")) {
             fetchOptions.startCursor(Cursor.fromWebSafeString(startCursorString)); // Where we left off
         }
@@ -129,7 +129,7 @@ public class AssocDaoImplement implements AssocDao{
         List<Assoc> resultAssocs = entitiesToAssocs(results);
         Cursor cursor = results.getCursor();// Where to start next time
         Result<Assoc> resultAssoc;
-        if (cursor != null && resultAssocs.size() == 10) {         // Are we paging? Save Cursor
+        if (cursor != null && resultAssocs.size() == 9) {         // Are we paging? Save Cursor
             String cursorString = cursor.toWebSafeString();               // Cursors are WebSafe
             resultAssoc= new Result<>(resultAssocs, cursorString);
         } else {
@@ -140,7 +140,7 @@ public class AssocDaoImplement implements AssocDao{
             personIds.add(resultAssoc.result.get(i).getPersonId());
         }
 //        Result<Long> personIdAndCursor=new Result<>(personIds,cursor.toWebSafeString());
-        if (cursor != null && personIds.size() == 10) {         // Are we paging? Save Cursor
+        if (cursor != null && personIds.size() == 9) {         // Are we paging? Save Cursor
             return new Result<>(personIds, cursor.toWebSafeString());
         } else {
             return new Result<>(personIds);
