@@ -16,6 +16,13 @@
                 </a>
             </div>
         </c:forEach>
+        <c:if test="${not empty cursor}">
+            <nav>
+                <ul class="pager">
+                    <li><a href="?cursor=${cursor}&id=${personidtoadd}">More</a></li>
+                </ul>
+            </nav>
+        </c:if>
     </c:otherwise>
 </c:choose>
 </div>

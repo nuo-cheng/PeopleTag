@@ -68,7 +68,7 @@ Copyright 2016 Google Inc.
             <c:if test="${not empty cursor}">
                 <nav>
                     <ul class="pager">
-                        <li><a href="?cursor=${cursor}">More</a></li>
+                        <li><a href="?cursor=${cursor}&id=${person.id}">More</a></li>
                     </ul>
                 </nav>
             </c:if>

@@ -35,6 +35,7 @@ public class AddToCollectionServlet extends HttpServlet {
         }
         request.getSession().getServletContext().setAttribute("collections", collections);
         request.getSession().getServletContext().setAttribute("personidtoadd",personId);
+        request.setAttribute("cursor", endCursor);
         request.getSession().setAttribute("page","addtocollection");
         request.getRequestDispatcher("/base.jsp").forward(request,response);
     }
