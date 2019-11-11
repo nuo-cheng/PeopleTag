@@ -33,7 +33,25 @@ public interface AssocDao {
      */
     List<Long> readPersons(Long collectionId, String startCursorString);
 
+
+    /**
+     * get the associate id by personId and collectionId
+     * @param personId
+     * @param collectionId
+     * @return
+     */
+     Long getAssocId(Long personId, Long collectionId);
+
+    /**
+     * check is a person already in a collection when adding
+     * @param personId
+     * @param collectionId
+     * @return
+     */
+    boolean isAlreadyIn(Long personId, Long collectionId);
+
     List<Long> getAssocIdsFromCollectionId(Long collectionId);
 
     List<Long> getAssocIdsFromPersonId(Long personId);
+
 }

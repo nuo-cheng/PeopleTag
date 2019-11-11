@@ -193,6 +193,24 @@
         <url-pattern>/deletecollection</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>movefromcollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.MoveFromCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>movefromcollection</servlet-name>
+        <url-pattern>/movefromcollection</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>finishmovefromcollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.FinishMoveFromCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>finishmovefromcollection</servlet-name>
+        <url-pattern>/finishmovefromcollection</url-pattern>
+    </servlet-mapping>
+
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>

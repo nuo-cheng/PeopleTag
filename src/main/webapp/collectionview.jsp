@@ -13,6 +13,10 @@
             <i class="glyphicon glyphicon-trash"></i>
             Delete collection
         </a>
+        <a href="/movefromcollection?id=${collection.id}" class="btn btn-danger btn-sm">
+            <i class="glyphicon glyphicon-trash"></i>
+            Move person from collection
+        </a>
     </div>
 
     <c:choose>

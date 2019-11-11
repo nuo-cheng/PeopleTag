@@ -20,7 +20,7 @@ public class ListCollectionServlet extends HttpServlet {
         List<Collection> collections = null;
         String endCursor = null;
         try {
-            Result<Collection> result = dao.listCollections(null);
+            Result<Collection> result = dao.listCollections(startCursor);
             collections = result.result;
             endCursor = result.cursor;
         } catch (Exception e) {
