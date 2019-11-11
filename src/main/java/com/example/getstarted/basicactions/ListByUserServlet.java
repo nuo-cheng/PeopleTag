@@ -52,7 +52,7 @@ public class ListByUserServlet extends HttpServlet {
     for (Person person : persons) {
       personNames.append(person.getFirst() + " ");
     }
-    req.getSession().setAttribute("cursor", endCursor);
+    req.setAttribute("cursor", endCursor);
     req.getSession().setAttribute("page", "list");
     req.getRequestDispatcher("/base.jsp").forward(req, resp);
   }

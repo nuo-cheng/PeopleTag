@@ -26,7 +26,7 @@ public interface AssocDao {
      * @param personId
      * @return
      */
-    List<Long> readCollections(Long personId, String startCursorString);
+    Result<Long> readCollections(Long personId, String startCursorString);
 
     /**
      * Read list of person ids according to collecionId;

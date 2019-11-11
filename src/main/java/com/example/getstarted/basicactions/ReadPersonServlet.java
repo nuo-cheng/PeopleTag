@@ -20,6 +20,7 @@ import com.example.getstarted.daos.CollectionDao;
 import com.example.getstarted.daos.PersonDao;
 import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Person;
+import com.example.getstarted.objects.Result;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,9 +44,12 @@ public class ReadPersonServlet extends HttpServlet {
     CollectionDao collectionDao=(CollectionDao) this.getServletContext().getAttribute("collectiondao");
     List<Collection> collections=new ArrayList<>();
     List<Long> collectionIds;
+    String endCursor;
     try {
       Person person = dao.readPerson(id);
-      collectionIds=assocDao.readCollections(id,null);
+      Result<Long> collectionIdsAndCursor=assocDao.readCollections(id,null);
+      collectionIds=collectionIdsAndCursor.result;
+      endCursor=collectionIdsAndCursor.cursor;
       for(int i=0;i<collectionIds.size();i++){
         Long collectionId=collectionIds.get(i);
         Collection collection=collectionDao.readCollection(collectionId);
@@ -54,6 +58,7 @@ public class ReadPersonServlet extends HttpServlet {
       req.setAttribute("person", person);
       req.setAttribute("page", "view");
       req.getSession().getServletContext().setAttribute("collectionsofperson",collections);
+      req.setAttribute("cursor",endCursor);
       req.getRequestDispatcher("/base.jsp").forward(req, resp);
     } catch (Exception e) {
       throw new ServletException("Error reading person", e);
