@@ -33,6 +33,7 @@ public interface AssocDao {
      */
     List<Long> readPersons(Long collectionId, String startCursorString);
 
+
     /**
      * get the associate id by personId and collectionId
      * @param personId
@@ -48,4 +49,9 @@ public interface AssocDao {
      * @return
      */
     boolean isAlreadyIn(Long personId, Long collectionId);
+
+    List<Long> getAssocIdsFromCollectionId(Long collectionId);
+
+    List<Long> getAssocIdsFromPersonId(Long personId);
+
 }

@@ -137,4 +137,36 @@ public class AssocDaoImplement implements AssocDao{
         }
         return personIds;
     }
+
+    @Override
+    public List<Long> getAssocIdsFromCollectionId(Long collectionId) {
+        Query query=new Query(ASSOC_KIND)
+                .setFilter(new Query.FilterPredicate(
+                        Assoc.COLLECTION_ID, Query.FilterOperator.EQUAL,collectionId))
+                .addSort(Assoc.PERSON_ID, Query.SortDirection.ASCENDING);
+        PreparedQuery preparedQuery=datastore.prepare(query);
+        QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator();
+        List<Assoc> resultAssocs = entitiesToAssocs(results);
+        List<Long> assocIds=new ArrayList<>();
+        for(int i=0;i<resultAssocs.size();i++){
+            assocIds.add(resultAssocs.get(i).getId());
+        }
+        return assocIds;
+    }
+
+    @Override
+    public List<Long> getAssocIdsFromPersonId(Long personId) {
+        Query query=new Query(ASSOC_KIND)
+                .setFilter(new Query.FilterPredicate(
+                        Assoc.PERSON_ID, Query.FilterOperator.EQUAL,personId))
+                .addSort(Assoc.COLLECTION_ID, Query.SortDirection.ASCENDING);
+        PreparedQuery preparedQuery=datastore.prepare(query);
+        QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator();
+        List<Assoc> resultAssocs = entitiesToAssocs(results);
+        List<Long> assocIds=new ArrayList<>();
+        for(int i=0;i<resultAssocs.size();i++){
+            assocIds.add(resultAssocs.get(i).getId());
+        }
+        return assocIds;
+    }
 }

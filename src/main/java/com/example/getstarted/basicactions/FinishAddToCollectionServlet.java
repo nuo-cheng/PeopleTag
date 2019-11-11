@@ -23,10 +23,12 @@ public class FinishAddToCollectionServlet extends HttpServlet {
         Long personId=(Long)request.getSession().getServletContext().getAttribute("personidtoadd");
         AssocDao assocDao=new AssocDaoImplement();
         try {
+
             if (!assocDao.isAlreadyIn(personId,collectionId)){
                 assocDao.createAssoc(personId, collectionId);
             }
             response.sendRedirect("/readcolleciton?collectionid="+collectionId);
+
         }catch (Exception e){
             throw new ServletException("Error adding person to collection", e);
         }

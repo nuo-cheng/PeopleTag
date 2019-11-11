@@ -15,9 +15,11 @@
 
 package com.example.getstarted.basicactions;
 
+import com.example.getstarted.daos.AssocDao;
 import com.example.getstarted.daos.PersonDao;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +35,14 @@ public class DeletePersonServlet extends HttpServlet {
       IOException {
     Long id = Long.decode(req.getParameter("id"));
     PersonDao dao = (PersonDao) this.getServletContext().getAttribute("dao");
+    AssocDao assocDao=(AssocDao)this.getServletContext().getAttribute("assocdao");
     try {
+      List<Long> assocIds=assocDao.getAssocIdsFromPersonId(id);
+      if(!assocIds.isEmpty()){
+        for(int i=0;i<assocIds.size();i++){
+          assocDao.deleteAssoc(assocIds.get(i));
+        }
+      }
       dao.deletePerson(id);
       resp.sendRedirect("/person");
     } catch (Exception e) {

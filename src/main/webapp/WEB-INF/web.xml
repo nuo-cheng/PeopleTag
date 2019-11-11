@@ -174,6 +174,24 @@
         <servlet-name>createcollection</servlet-name>
         <url-pattern>/createcollection</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>listcollectionbyuser</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.ListCollectionByUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listcollectionbyuser</servlet-name>
+        <url-pattern>/mycollections</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deletecollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.DeleteCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletecollection</servlet-name>
+        <url-pattern>/deletecollection</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>movefromcollection</servlet-name>
