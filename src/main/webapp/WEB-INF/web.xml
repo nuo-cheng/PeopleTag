@@ -54,6 +54,7 @@
     <filter-mapping>
       <filter-name>ListByUserFilter</filter-name>
       <url-pattern>/persons/mine</url-pattern>
+        <url-pattern>/mycollections</url-pattern>
     </filter-mapping>
 
     <servlet>
