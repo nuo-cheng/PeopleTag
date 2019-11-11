@@ -1,5 +1,7 @@
 package com.example.getstarted.daos;
 
+import com.example.getstarted.objects.Result;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public interface AssocDao {
      * @param collectionId
      * @return
      */
-    List<Long> readPersons(Long collectionId, String startCursorString);
+    Result<Long> readPersons(Long collectionId, String startCursorString);
 
 
     /**

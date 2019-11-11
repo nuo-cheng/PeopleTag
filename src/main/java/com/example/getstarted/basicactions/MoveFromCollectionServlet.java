@@ -32,7 +32,7 @@ public class MoveFromCollectionServlet extends HttpServlet {
         List<Long> personIds = null;
         String endCursor = null;
         try {
-            personIds = dao.readPersons(collectionId, startCursor);
+            personIds = dao.readPersons(collectionId, startCursor).result;
 //            persons = result.result;
 //            endCursor = result.cursor;
         } catch (Exception e) {

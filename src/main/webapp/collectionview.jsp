@@ -40,7 +40,7 @@
             <c:if test="${not empty cursor}">
                 <nav>
                     <ul class="pager">
-                        <li><a href="?cursor=${fn:escapeXml(cursor)}">More</a></li>
+                        <li><a href="?cursor=${fn:escapeXml(cursor)}&collectionid=${collection.id}">More</a></li>
                     </ul>
                 </nav>
             </c:if>

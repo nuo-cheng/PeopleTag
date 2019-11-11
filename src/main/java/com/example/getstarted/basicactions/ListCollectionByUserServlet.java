@@ -49,7 +49,7 @@ public class ListCollectionByUserServlet extends HttpServlet {
       throw new ServletException("Error listing collections", e);
     }
     req.getSession().getServletContext().setAttribute("collections", collections);
-    req.getSession().setAttribute("cursor", endCursor);
+    req.setAttribute("cursor", endCursor);
     req.getSession().setAttribute("page", "collectionlist");
     req.getRequestDispatcher("/base.jsp").forward(req, resp);
   }

@@ -143,7 +143,6 @@ public class DatastoreDao implements PersonDao {
         .addSort(Person.FIRST, SortDirection.ASCENDING); // Use default Index "first"
     PreparedQuery preparedQuery = datastore.prepare(query);
     QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator(fetchOptions);
-
     List<Person> resultPersons = entitiesToPersons(results);     // Retrieve and convert Entities
     Cursor cursor = results.getCursor();              // Where to start next time
     if (cursor != null && resultPersons.size() == 10) {         // Are we paging? Save Cursor
@@ -171,7 +170,6 @@ public class DatastoreDao implements PersonDao {
         .addSort(Person.LAST, SortDirection.ASCENDING);
     PreparedQuery preparedQuery = datastore.prepare(query);
     QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator(fetchOptions);
-
     List<Person> resultPersons = entitiesToPersons(results);     // Retrieve and convert Entities
     Cursor cursor = results.getCursor();              // Where to start next time
     if (cursor != null && resultPersons.size() == 10) {         // Are we paging? Save Cursor

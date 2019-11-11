@@ -29,7 +29,7 @@ public class FinishMoveFromCollectionServlet extends HttpServlet {
         }catch (Exception e){
             throw new ServletException("Error moving person to collection", e);
         }
-        response.sendRedirect("/readcolleciton?collectionid="+collectionId);
+        response.sendRedirect("/readcollection?collectionid="+collectionId);
 
     }
 }

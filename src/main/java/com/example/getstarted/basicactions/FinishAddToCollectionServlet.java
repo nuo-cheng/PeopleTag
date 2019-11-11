@@ -27,7 +27,7 @@ public class FinishAddToCollectionServlet extends HttpServlet {
             if (!assocDao.isAlreadyIn(personId,collectionId)){
                 assocDao.createAssoc(personId, collectionId);
             }
-            response.sendRedirect("/readcolleciton?collectionid="+collectionId);
+            response.sendRedirect("/readcollection?collectionid="+collectionId);
 
         }catch (Exception e){
             throw new ServletException("Error adding person to collection", e);

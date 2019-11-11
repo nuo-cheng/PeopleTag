@@ -111,7 +111,7 @@ public class AssocDaoImplement implements AssocDao{
     }
 
     @Override
-    public List<Long> readPersons(Long collectionId, String startCursorString) {
+    public Result<Long> readPersons(Long collectionId, String startCursorString) {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(10); // Only show 10 at a time
         if (startCursorString != null && !startCursorString.equals("")) {
             fetchOptions.startCursor(Cursor.fromWebSafeString(startCursorString)); // Where we left off
@@ -135,7 +135,13 @@ public class AssocDaoImplement implements AssocDao{
         for(int i=0;i<resultAssoc.result.size();i++){
             personIds.add(resultAssoc.result.get(i).getPersonId());
         }
-        return personIds;
+//        Result<Long> personIdAndCursor=new Result<>(personIds,cursor.toWebSafeString());
+        if (cursor != null && personIds.size() == 10) {         // Are we paging? Save Cursor
+            return new Result<>(personIds, cursor.toWebSafeString());
+        } else {
+            return new Result<>(personIds);
+        }
+//        return personIdAndCursor;
     }
 
     @Override

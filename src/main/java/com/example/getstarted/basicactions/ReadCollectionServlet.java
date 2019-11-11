@@ -25,18 +25,20 @@ public class ReadCollectionServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String startCursor = request.getParameter("cursor");
         Long collectionId=Long.decode(request.getParameter("collectionid"));
         AssocDao assocDao=(AssocDao) this.getServletContext().getAttribute("assocdao");
         DatastoreDao dao=(DatastoreDao) this.getServletContext().getAttribute("dao");
         CollectionDao collectionDao=(CollectionDao) this.getServletContext().getAttribute("collectiondao");
         Collection collection;
         List<Long> personIds;
-
         List<Person> persons=new ArrayList<>();
+        String endCursor = null;
         try{
             collection=collectionDao.readCollection(collectionId);
-            //not using cursor
-            personIds=assocDao.readPersons(collectionId,null);
+            Result<Long> personIdsAndCursor=assocDao.readPersons(collectionId,startCursor);
+            personIds=personIdsAndCursor.result;
+            endCursor=personIdsAndCursor.cursor;
             for(int i=0;i<personIds.size();i++){
                 Long id=personIds.get(i);
                 Person person=dao.readPerson(id);
@@ -47,6 +49,7 @@ public class ReadCollectionServlet extends HttpServlet {
         }
         request.setAttribute("collection",collection);
         request.getSession().getServletContext().setAttribute("persons", persons);
+        request.setAttribute("cursor", endCursor);
         request.getSession().setAttribute("page", "collectionview");
         request.getRequestDispatcher("/base.jsp").forward(request, response);
     }
