@@ -8,16 +8,19 @@
   display: grid;
   grid-template-columns: 360px 360px 360px ;
   grid-gap: 10px;
-  background-color: #FFFFFF;
+  background-color: rgba(240, 128, 128, 0.3);
   padding: 10px;
 }
 
 .grid-container > div {
-  background-color: rgba(240, 128, 128, 0.3);
+  background-color: rgba(240, 128, 128, 0.4);
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
 }
+    .media{
+        margin-top: 0px;
+    }
 </style>
 
 <div class="container">

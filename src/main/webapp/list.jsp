@@ -21,8 +21,9 @@ Copyright 2016 Google Inc.
   display: grid;
   grid-template-columns: 360px 360px 360px ;
   grid-gap: 10px;
-  background-color: #FFFFFF;
+  background-color:  rgba(240, 128, 128, 0.2);
   padding: 10px;
+
 }
 
 .grid-container > div {
@@ -31,6 +32,9 @@ Copyright 2016 Google Inc.
   padding: 20px 0;
   font-size: 30px;
 }
+    .media{
+        margin-top: 0px;
+    }
 </style>
 
 
@@ -72,3 +76,4 @@ Copyright 2016 Google Inc.
   </c:choose>
 </div>
 <!-- [END list] -->
+</div>
