@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Add person  to collection
+ */
 @WebServlet(name = "AddToCollectionServlet")
 public class AddToCollectionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,6 +23,13 @@ public class AddToCollectionServlet extends HttpServlet {
     }
 
 
+    /**
+     * doget
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long personId=Long.decode(request.getParameter("id"));
         CollectionDao dao = (CollectionDao) this.getServletContext().getAttribute("collectiondao");

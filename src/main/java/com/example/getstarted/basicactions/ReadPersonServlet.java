@@ -31,10 +31,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// [START example]
+/**
+ * read person
+ */
 @SuppressWarnings("serial")
 public class ReadPersonServlet extends HttpServlet {
 
+  /**
+   * do get
+   * @param req
+   * @param resp
+   * @throws IOException
+   * @throws ServletException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException,
       ServletException {

@@ -10,12 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * finish remove person
+ */
 @WebServlet(name = "FinishMoveFromCollectionServlet")
 public class FinishMoveFromCollectionServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
+    /**
+     * do get
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long personId=Long.decode(request.getParameter("personid"));
         Long collectionId=(Long)request.getSession().getServletContext().getAttribute("moveFromCollectionId");

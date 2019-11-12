@@ -26,10 +26,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// [START example]
+
+/**
+ * delete person
+ */
 @SuppressWarnings("serial")
 public class DeletePersonServlet extends HttpServlet {
 
+  /**
+   * do get
+   * @param req
+   * @param resp
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {

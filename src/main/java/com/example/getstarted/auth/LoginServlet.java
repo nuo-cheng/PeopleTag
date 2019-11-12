@@ -34,6 +34,14 @@ import javax.servlet.http.HttpServletResponse;
  * If not redirect to /login.
  */
 public class LoginServlet extends HttpServlet {
+
+  /**
+   * doget
+   * @param req
+   * @param resp
+   * @throws IOException
+   * @throws ServletException
+   */
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws IOException, ServletException {

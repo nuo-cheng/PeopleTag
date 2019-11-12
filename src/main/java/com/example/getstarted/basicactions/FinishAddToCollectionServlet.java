@@ -12,12 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * finish add to collection
+ */
 @WebServlet(name = "FinishAddToCollectionServlet")
 public class FinishAddToCollectionServlet extends HttpServlet {
+    /**
+     * do post
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
 
+    /**
+     * do get
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] collectionIds=request.getParameterValues("collectionid");
         Long personId=(Long)request.getSession().getServletContext().getAttribute("personidtoadd");

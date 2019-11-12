@@ -25,9 +25,20 @@ import java.io.IOException;
 import java.util.List;
 
 // [START example]
+
+/**
+ * delete collection
+ */
 @SuppressWarnings("serial")
 public class DeleteCollectionServlet extends HttpServlet {
 
+  /**
+   * do get
+   * @param req
+   * @param resp
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {

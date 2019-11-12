@@ -37,10 +37,19 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-// [START example]
+/**
+ * create collection
+ */
 @SuppressWarnings("serial")
 public class CreateCollectionServlet extends HttpServlet {
 
+  /**
+   *
+   * @param req
+   * @param resp
+   * @throws ServletException
+   * @throws IOException
+   */
   // [START setup]   //not good
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
@@ -53,6 +62,14 @@ public class CreateCollectionServlet extends HttpServlet {
   // [END setup]
 
   // [START formpost]    //not good
+
+  /**
+   * do post
+   * @param req
+   * @param resp
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {

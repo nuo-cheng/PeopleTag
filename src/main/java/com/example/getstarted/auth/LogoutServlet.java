@@ -25,9 +25,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 // [START example]
+
+/**
+ * filter used when log out
+ */
 @SuppressWarnings("serial")
 public class LogoutServlet extends HttpServlet {
 
+  /**
+   * doget
+   * @param req
+   * @param resp
+   * @throws IOException
+   * @throws ServletException
+   */
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws IOException, ServletException {

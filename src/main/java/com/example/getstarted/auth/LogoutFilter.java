@@ -44,7 +44,14 @@ public class LogoutFilter implements Filter {
   }
   // [END init]
 
-
+  /**
+   * dofilter
+   * @param servletReq
+   * @param servletResp
+   * @param chain
+   * @throws IOException
+   * @throws ServletException
+   */
   @Override
   public void doFilter(ServletRequest servletReq, ServletResponse servletResp, FilterChain chain)
       throws IOException, ServletException {
@@ -62,6 +69,9 @@ public class LogoutFilter implements Filter {
     }
   }
 
+  /**
+   * destroy filter
+   */
   @Override
   public void destroy() {
   }

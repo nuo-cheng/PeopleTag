@@ -28,10 +28,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// [START example]
+/**
+ * list by user
+ */
 @SuppressWarnings("serial")
 public class ListByUserServlet extends HttpServlet {
 
+  /**
+   * do get
+   * @param req
+   * @param resp
+   * @throws IOException
+   * @throws ServletException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException,
         ServletException {

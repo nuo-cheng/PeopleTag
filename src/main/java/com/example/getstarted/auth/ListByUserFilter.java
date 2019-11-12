@@ -35,11 +35,23 @@ import javax.servlet.http.HttpServletResponse;
  * and redirect to /login.If so, chain.doFilter,(if no more filter, go to servlet)
  */
 public class ListByUserFilter implements Filter {
-
+  /**
+   * init filter
+   * @param config
+   * @throws ServletException
+   */
   @Override
   public void init(FilterConfig config) throws ServletException {
   }
 
+  /**
+   * dofilter
+   * @param servletReq
+   * @param servletResp
+   * @param chain
+   * @throws IOException
+   * @throws ServletException
+   */
   @Override
   public void doFilter(ServletRequest servletReq, ServletResponse servletResp, FilterChain chain)
       throws IOException, ServletException {
@@ -55,6 +67,9 @@ public class ListByUserFilter implements Filter {
     }
   }
 
+  /**
+   * destroy
+   */
   @Override
   public void destroy() {
   }

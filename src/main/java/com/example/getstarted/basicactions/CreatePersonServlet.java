@@ -37,6 +37,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
 
 // [START example]
+
+/**
+ * create person
+ */
 @SuppressWarnings("serial")
 public class CreatePersonServlet extends HttpServlet {
 
@@ -52,6 +56,14 @@ public class CreatePersonServlet extends HttpServlet {
   // [END setup]
 
   // [START formpost]
+
+  /**
+   * do post
+   * @param req
+   * @param resp
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {

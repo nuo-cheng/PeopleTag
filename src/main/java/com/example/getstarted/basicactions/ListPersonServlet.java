@@ -31,10 +31,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// [START example]
+/**
+ * list person
+ */
 @SuppressWarnings("serial")
 public class ListPersonServlet extends HttpServlet {
 
+  /**
+   * init servlet
+   * @throws ServletException
+   */
   @Override
   public void init() throws ServletException {
     PersonDao dao = null;
@@ -84,6 +90,13 @@ public class ListPersonServlet extends HttpServlet {
         !Strings.isNullOrEmpty(getServletContext().getInitParameter("personshelf.bucket")));
   }
 
+  /**
+   * do get
+   * @param req
+   * @param resp
+   * @throws IOException
+   * @throws ServletException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException,
       ServletException {

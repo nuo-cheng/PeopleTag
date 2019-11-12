@@ -35,9 +35,18 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
 
-// [START example]
+/**
+ * update person
+ */
 @SuppressWarnings("serial")
 public class UpdatePersonServlet extends HttpServlet {
+  /**
+   * do get
+   * @param req
+   * @param resp
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {
@@ -54,6 +63,13 @@ public class UpdatePersonServlet extends HttpServlet {
     }
   }
 
+  /**
+   * do post
+   * @param req
+   * @param resp
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {
