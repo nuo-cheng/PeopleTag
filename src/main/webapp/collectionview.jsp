@@ -25,6 +25,7 @@
 
 <div class="container">
     <h3>${collection.collectionName}</h3>
+    <h4>${collection.description}</h4>
     <div class="btn-group">
         <a href="/updatecollection?id=${collection.id}" class="btn btn-primary btn-sm">
             <i class="glyphicon glyphicon-edit"></i>
