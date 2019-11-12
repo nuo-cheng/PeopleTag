@@ -5,6 +5,11 @@ import com.example.getstarted.objects.Result;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * methods of communicate Association object with google datastore
+ * CRUD
+ * concrete in AssocDaoImplement
+ */
 public interface AssocDao {
     /**
      * Add
@@ -52,8 +57,18 @@ public interface AssocDao {
      */
     boolean isAlreadyIn(Long personId, Long collectionId);
 
+    /**
+     * get AssocId from collectionId
+     * @param collectionId
+     * @return
+     */
     List<Long> getAssocIdsFromCollectionId(Long collectionId);
 
+    /**
+     * get AssocId from personId
+     * @param personId
+     * @return
+     */
     List<Long> getAssocIdsFromPersonId(Long personId);
 
 }

@@ -83,7 +83,7 @@ public class CloudStorageHelper {
     if (fileName != null && !fileName.isEmpty() && fileName.contains(".")) {
       String[] allowedExt = { ".jpg", ".jpeg", ".png", ".gif" };
       for (String ext : allowedExt) {
-        if (fileName.endsWith(ext)) {
+        if (fileName.toLowerCase().endsWith(ext)) {
           return;
         }
       }

@@ -22,23 +22,36 @@ import com.example.getstarted.objects.Result;
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 // [START example]
+/**
+ * methods of communicate Collection object with google datastore
+ * CRUD
+ *
+ */
 public class CollectionDaoImplement implements CollectionDao {
 
   // [START constructor]
   private DatastoreService datastore;
   private static final String COLLECTION_KIND = "MyCollection";
 
+  /**
+   * prepare datastore
+   */
   public CollectionDaoImplement() {
     datastore = DatastoreServiceFactory.getDatastoreService(); // Lastized Datastore service
   }
   // [END constructor]
 
-  // [START entityToPerson]
+  /**
+   * entity to collection
+   * @param entity
+   * @return
+   */
   public Collection entityToCollection(Entity entity) {
     return new Collection.Builder()                                     // Convert to Person form
         .collectionName((String) entity.getProperty(Collection.COLLECTION_NAME))
@@ -48,9 +61,13 @@ public class CollectionDaoImplement implements CollectionDao {
         .createdById((String) entity.getProperty(Collection.CREATED_BY_ID))
         .build();
   }
-  // [END entityToPerson]
 
-  // [START create]
+  /**
+   * add collection
+   * @param collection
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Long createCollection(Collection collection) {
     Entity incCollectionEntity = new Entity(COLLECTION_KIND);  // Key will be assigned once written
@@ -62,9 +79,13 @@ public class CollectionDaoImplement implements CollectionDao {
     Key collectionKey = datastore.put(incCollectionEntity); // Save the Entity
     return collectionKey.getId();                     // The ID of the Key
   }
-  // [END create]
 
-  // [START read]
+  /**
+   * read collection
+   * @param collectionId
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Collection readCollection(Long collectionId) {
     try {
@@ -74,9 +95,12 @@ public class CollectionDaoImplement implements CollectionDao {
       return null;
     }
   }
-  // [END read]
 
-  // [START update]
+  /**
+   * update collection
+   * @param collection
+   * @throws SQLException
+   */
   @Override
   public void updateCollection(Collection collection) {
     Key key = KeyFactory.createKey(COLLECTION_KIND, collection.getId());  // From a person, create a Key
@@ -88,17 +112,24 @@ public class CollectionDaoImplement implements CollectionDao {
 
     datastore.put(entity);                   // Update the Entity
   }
-  // [END update]
 
-  // [START delete]
+  /**
+   * delete collection
+   * @param collectionId
+   * @throws SQLException
+   */
   @Override
   public void deleteCollection(Long collectionId) {
     Key key = KeyFactory.createKey(COLLECTION_KIND, collectionId);        // Create the Key
     datastore.delete(key);                      // Delete the Entity
   }
-  // [END delete]
 
-  // [START entitiesToPersons]
+
+  /**
+   * entities to collections
+   * @param results
+   * @return
+   */
   public List<Collection> entitiesToCollections(Iterator<Entity> results) {
     List<Collection> resultCollections = new ArrayList<>();
     while (results.hasNext()) {  // We still have data
@@ -106,9 +137,13 @@ public class CollectionDaoImplement implements CollectionDao {
     }
     return resultCollections;
   }
-  // [END entitiesToPersons]
 
-  // [START listpersons]
+  /**
+   * list all collections
+   * @param startCursorString
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Result<Collection> listCollections(String startCursorString) {
     FetchOptions fetchOptions = FetchOptions.Builder.withLimit(10); // Only show 10 at a time
@@ -129,9 +164,14 @@ public class CollectionDaoImplement implements CollectionDao {
       return new Result<>(resultCollections);
     }
   }
-  // [END listpersons]
 
-  // [START listbyuser]
+  /**
+   * list all collections created by a specific user
+   * @param userId
+   * @param startCursorString
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Result<Collection> listCollectionsByUser(String userId, String startCursorString) {
     FetchOptions fetchOptions = FetchOptions.Builder.withLimit(10); // Only show 10 at a time
@@ -157,7 +197,5 @@ public class CollectionDaoImplement implements CollectionDao {
       return new Result<>(resultCollections);
     }
   }
-  // [END listbyuser]
 }
-// [END example]
 

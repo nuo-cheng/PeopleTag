@@ -25,19 +25,58 @@ import java.sql.SQLException;
 
 
 // [START example]
+/**
+ * methods of communicate Collection object with google datastore
+ * CRUD
+ *  * concrete in CollectionDaoImplement
+ */
 public interface CollectionDao {
+
+  /**
+   * add collection
+   * @param collection
+   * @return
+   * @throws SQLException
+   */
   Long createCollection(Collection collection) throws SQLException;
 
+  /**
+   * read collection
+   * @param collectionId
+   * @return
+   * @throws SQLException
+   */
   Collection readCollection(Long collectionId) throws SQLException;
 
+  /**
+   * update collection
+   * @param collection
+   * @throws SQLException
+   */
   void updateCollection(Collection collection) throws SQLException;
 
+  /**
+   * delete collection
+   * @param collectionId
+   * @throws SQLException
+   */
   void deleteCollection(Long collectionId) throws SQLException;
 
+  /**
+   * list all collections
+   * @param startCursor
+   * @return
+   * @throws SQLException
+   */
   Result<Collection> listCollections(String startCursor) throws SQLException;
 
-//  Result<Person> listPersonOfCollection(String startCursor) throws SQLException;
-
+  /**
+   * list all collections created by a specific user
+   * @param userId
+   * @param startCursor
+   * @return
+   * @throws SQLException
+   */
   Result<Collection> listCollectionsByUser(String userId, String startCursor) throws SQLException;
 }
 // [END example]
