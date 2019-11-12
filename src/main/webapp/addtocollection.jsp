@@ -7,15 +7,19 @@
         <p>No collections found</p>
     </c:when>
     <c:otherwise>
+        <form action="/finishaddtocollection">
         <c:forEach items="${collections}" var="collection">
             <div class="media">
-                <a href="/finishaddtocollection?collectionid=${collection.id}">
-                    <div class="media-body">
-                        <h4>${collection.collectionName}</h4>
-                    </div>
-                </a>
+                <input type="checkbox" name="collectionid" value="${collection.id}"> ${collection.collectionName}<br>
+                </c:forEach>
+                    <button type="submit">Submit</button><br>
+                </form>
+<%--                <a href="/finishaddtocollection?collectionid=${collection.id}">--%>
+<%--                    <div class="media-body">--%>
+<%--                        <h4>${collection.collectionName}</h4>--%>
+<%--                    </div>--%>
+<%--                </a>--%>
             </div>
-        </c:forEach>
         <c:if test="${not empty cursor}">
             <nav>
                 <ul class="pager">

@@ -15,23 +15,28 @@ import java.io.IOException;
 @WebServlet(name = "FinishAddToCollectionServlet")
 public class FinishAddToCollectionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long collectionId=Long.decode(request.getParameter("collectionid"));
+        String[] collectionIds=request.getParameterValues("collectionid");
         Long personId=(Long)request.getSession().getServletContext().getAttribute("personidtoadd");
-        AssocDao assocDao=new AssocDaoImplement();
-        try {
+        if(collectionIds==null||collectionIds.length==0){
+            response.sendRedirect("/addtocollection?id="+personId);
+        }else {
+            AssocDao assocDao = new AssocDaoImplement();
+            try {
+                for (int i = 0; i < collectionIds.length; i++) {
+                    Long collectionId = Long.decode(collectionIds[i]);
+                    if (!assocDao.isAlreadyIn(personId, collectionId)) {
+                        assocDao.createAssoc(personId, collectionId);
+                    }
+                }
+                response.sendRedirect("/read?id=" + personId);
 
-            if (!assocDao.isAlreadyIn(personId,collectionId)){
-                assocDao.createAssoc(personId, collectionId);
+            } catch (Exception e) {
+                throw new ServletException("Error adding person to collection", e);
             }
-            response.sendRedirect("/readcollection?collectionid="+collectionId);
-
-        }catch (Exception e){
-            throw new ServletException("Error adding person to collection", e);
         }
-
     }
 }
