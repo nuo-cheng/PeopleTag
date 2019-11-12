@@ -31,23 +31,35 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.QueryResultIterator;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 // [START example]
+/**
+ * methods of communicate Person object with google datastore
+ * CRUD
+ */
 public class DatastoreDao implements PersonDao {
 
   // [START constructor]
   private DatastoreService datastore;
   private static final String PERSON_KIND = "Person4";
 
+  /**
+   * prepare datastore
+   */
   public DatastoreDao() {
     datastore = DatastoreServiceFactory.getDatastoreService(); // Lastized Datastore service
   }
   // [END constructor]
 
-  // [START entityToPerson]
+  /**
+   * entity to person
+   * @param entity
+   * @return
+   */
   public Person entityToPerson(Entity entity) {
     return new Person.Builder()                                     // Convert to Person form
         .last((String) entity.getProperty(Person.LAST))
@@ -62,9 +74,13 @@ public class DatastoreDao implements PersonDao {
         .interest((String) entity.getProperty(Person.INTEREST))
         .build();
   }
-  // [END entityToPerson]
 
-  // [START create]
+  /**
+   * add person
+   * @param person
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Long createPerson(Person person) {
     Entity incPersonEntity = new Entity(PERSON_KIND);  // Key will be assigned once written
@@ -81,9 +97,13 @@ public class DatastoreDao implements PersonDao {
     Key personKey = datastore.put(incPersonEntity); // Save the Entity
     return personKey.getId();                     // The ID of the Key
   }
-  // [END create]
 
-  // [START read]
+  /**
+   * read person
+   * @param personId
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Person readPerson(Long personId) {
     try {
@@ -93,9 +113,12 @@ public class DatastoreDao implements PersonDao {
       return null;
     }
   }
-  // [END read]
 
-  // [START update]
+  /**
+   * update person
+   * @param person
+   * @throws SQLException
+   */
   @Override
   public void updatePerson(Person person) {
     Key key = KeyFactory.createKey(PERSON_KIND, person.getId());  // From a person, create a Key
@@ -112,17 +135,23 @@ public class DatastoreDao implements PersonDao {
 
     datastore.put(entity);                   // Update the Entity
   }
-  // [END update]
 
-  // [START delete]
+  /**
+   * delete person
+   * @param personId
+   * @throws SQLException
+   */
   @Override
   public void deletePerson(Long personId) {
     Key key = KeyFactory.createKey(PERSON_KIND, personId);        // Create the Key
     datastore.delete(key);                      // Delete the Entity
   }
-  // [END delete]
 
-  // [START entitiesToPersons]
+  /**
+   * entities to persons
+   * @param results
+   * @return
+   */
   public List<Person> entitiesToPersons(Iterator<Entity> results) {
     List<Person> resultPersons = new ArrayList<>();
     while (results.hasNext()) {  // We still have data
@@ -130,9 +159,13 @@ public class DatastoreDao implements PersonDao {
     }
     return resultPersons;
   }
-  // [END entitiesToPersons]
 
-  // [START listpersons]
+  /**
+   * list all persons
+   * @param startCursorString
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Result<Person> listPersons(String startCursorString) {
     FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -152,9 +185,14 @@ public class DatastoreDao implements PersonDao {
       return new Result<>(resultPersons);
     }
   }
-  // [END listpersons]
 
-  // [START listbyuser]
+  /**
+   * list all persons added by a specify user
+   * @param userId
+   * @param startCursorString
+   * @return
+   * @throws SQLException
+   */
   @Override
   public Result<Person> listPersonsByUser(String userId, String startCursorString) {
     FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -179,6 +217,4 @@ public class DatastoreDao implements PersonDao {
       return new Result<>(resultPersons);
     }
   }
-  // [END listbyuser]
 }
-// [END example]

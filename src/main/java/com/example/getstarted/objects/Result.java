@@ -18,16 +18,32 @@ package com.example.getstarted.objects;
 import java.util.List;
 
 // [START example]
+
+/**
+ * Result class
+ * @param <K>
+ * object of result
+ * query result
+ */
 public class Result<K> {
 
   public String cursor;
   public List<K> result;
 
+  /**
+   * constructor 1
+   * @param result
+   * @param cursor
+   */
   public Result(List<K> result, String cursor) {
     this.result = result;
     this.cursor = cursor;
   }
 
+  /**
+   * constructor 2
+   * @param result
+   */
   public Result(List<K> result) {
     this.result = result;
     this.cursor = null;

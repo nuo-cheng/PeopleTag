@@ -12,20 +12,37 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * methods of communicate Association object with google datastore
+ * CRUD
+ */
 public class AssocDaoImplement implements AssocDao{
     private DatastoreService datastore;
     private static final String ASSOC_KIND="ASSOC";
 
+    /**
+     * entity To Assoc
+     * @param entity
+     * @return
+     */
     public Assoc entityToAssoc(Entity entity){
         return new Assoc(entity.getKey().getId(),(Long)entity.getProperty(Assoc.PERSON_ID)
         ,(Long)entity.getProperty(Assoc.COLLECTION_ID));
     }
 
+    /**
+     * prepare datastore
+     */
     public AssocDaoImplement(){
         datastore= DatastoreServiceFactory.getDatastoreService();
     }
 
-
+    /**
+     * Add
+     * @param personId
+     * @param collectionId
+     * @return
+     */
     @Override
     public Long createAssoc(Long personId, Long collectionId) throws SQLException {
         Entity assocEntity=new Entity(ASSOC_KIND);
@@ -35,6 +52,12 @@ public class AssocDaoImplement implements AssocDao{
         return assocKey.getId();
     }
 
+    /**
+     * get the associate id by personId and collectionId
+     * @param personId
+     * @param collectionId
+     * @return
+     */
     public Long getAssocId(Long personId, Long collectionId){
         Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
                 Query.CompositeFilterOperator.AND, Arrays.<Query.Filter>asList(
@@ -52,6 +75,12 @@ public class AssocDaoImplement implements AssocDao{
         return entity.getKey().getId();
     }
 
+    /**
+     * check is a person already in a collection when adding
+     * @param personId
+     * @param collectionId
+     * @return
+     */
     public boolean isAlreadyIn(Long personId, Long collectionId){
         Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
                 Query.CompositeFilterOperator.AND, Arrays.<Query.Filter>asList(
@@ -67,12 +96,22 @@ public class AssocDaoImplement implements AssocDao{
         }
     }
 
+    /**
+     * Delete
+     * @param assocId
+     * @throws SQLException
+     */
     @Override
     public void deleteAssoc(Long assocId) throws SQLException {
         Key key= KeyFactory.createKey(ASSOC_KIND,assocId);
         datastore.delete(key);
     }
 
+    /**
+     * entities to Assocs
+     * @param results
+     * @return
+     */
     public List<Assoc> entitiesToAssocs(Iterator<Entity> results){
         List<Assoc> resultAssocs=new ArrayList<>();
         while (results.hasNext()) {  // We still have data
@@ -81,6 +120,11 @@ public class AssocDaoImplement implements AssocDao{
         return resultAssocs;
     }
 
+    /**
+     * Read list of collection ids according to personId
+     * @param personId
+     * @return
+     */
     @Override
     public Result<Long> readCollections(Long personId, String startCursorString) {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -114,6 +158,11 @@ public class AssocDaoImplement implements AssocDao{
         }
     }
 
+    /**
+     * Read list of person ids according to collecionId;
+     * @param collectionId
+     * @return
+     */
     @Override
     public Result<Long> readPersons(Long collectionId, String startCursorString) {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -148,6 +197,11 @@ public class AssocDaoImplement implements AssocDao{
 //        return personIdAndCursor;
     }
 
+    /**
+     * get AssocId from collectionId
+     * @param collectionId
+     * @return
+     */
     @Override
     public List<Long> getAssocIdsFromCollectionId(Long collectionId) {
         Query query=new Query(ASSOC_KIND)
@@ -164,6 +218,11 @@ public class AssocDaoImplement implements AssocDao{
         return assocIds;
     }
 
+    /**
+     * get AssocId from personId
+     * @param personId
+     * @return
+     */
     @Override
     public List<Long> getAssocIdsFromPersonId(Long personId) {
         Query query=new Query(ASSOC_KIND)
