@@ -8,7 +8,7 @@ public class PostPersonAssoc {
     private Long personId;
     private Long postId;
 
-    PostPersonAssoc(Long id,Long personId,Long postId){
+    public PostPersonAssoc(Long id,Long personId,Long postId){
         this.id=id;
         this.personId=personId;
         this.postId=postId;

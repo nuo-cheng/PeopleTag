@@ -8,7 +8,7 @@ public class PostCollectionAssoc {
     private Long collectionId;
     private Long postId;
 
-    PostCollectionAssoc(Long id, Long collectionId, Long postId){
+    public PostCollectionAssoc(Long id, Long collectionId, Long postId){
         this.id=id;
         this.collectionId=collectionId;
         this.postId=postId;

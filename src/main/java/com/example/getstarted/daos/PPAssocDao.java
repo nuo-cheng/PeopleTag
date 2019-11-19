@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public interface PPAssocDao {
     Long createPPAssoc(Long personId, Long postId) throws SQLException;
 
-    void deletePPAssoc(Long postId) throws SQLException;
+    void deletePPAssoc(Long ppAssocId) throws SQLException;
 
     Result<Long> readPersons(Long postId, String startCursorString) throws SQLException;
 
