@@ -198,7 +198,7 @@ public class AssocDaoImplement implements AssocDao{
     }
 
     /**
-     * get AssocId from collectionId
+     * get AssocIds from collectionId
      * @param collectionId
      * @return
      */
@@ -219,7 +219,7 @@ public class AssocDaoImplement implements AssocDao{
     }
 
     /**
-     * get AssocId from personId
+     * get AssocIds from personId
      * @param personId
      * @return
      */
