@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class PCAssocDaoImplement implements PCAssocDao{
 
 
     @Override
-    public Long createPCAssocDao(Long collectionId, Long postId) throws SQLException {
+    public Long createPCAssoc(Long collectionId, Long postId) throws SQLException {
         Entity pCAssocEntity=new Entity(PCASSOC_KIND);
         pCAssocEntity.setProperty(PostCollectionAssoc.COLLECTION_ID,collectionId);
         pCAssocEntity.setProperty(PostCollectionAssoc.POST_ID,postId);
@@ -111,6 +112,22 @@ public class PCAssocDaoImplement implements PCAssocDao{
             return new Result<>(postIds, cursor.toWebSafeString());
         } else {
             return new Result<>(postIds);
+        }
+    }
+
+    @Override
+    public boolean isAlreadyIn(Long postId, Long collectionId) {
+        Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
+                Query.CompositeFilterOperator.AND, Arrays.<Query.Filter>asList(
+                new Query.FilterPredicate(PostCollectionAssoc.COLLECTION_ID, Query.FilterOperator.EQUAL, collectionId),
+                new Query.FilterPredicate(PostCollectionAssoc.POST_ID, Query.FilterOperator.EQUAL, postId)));
+        Query query=new Query(PCASSOC_KIND).setFilter(advancedFilter);
+        PreparedQuery preparedQuery = datastore.prepare(query);
+        QueryResultIterator<Entity> results=preparedQuery.asQueryResultIterator();
+        if (results.hasNext()){
+            return true;
+        } else {
+            return false;
         }
     }
 }

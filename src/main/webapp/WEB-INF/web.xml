@@ -211,7 +211,25 @@
         <servlet-name>finishmovefromcollection</servlet-name>
         <url-pattern>/finishmovefromcollection</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>addpersontag</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.AddPersonTagServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addpersontag</servlet-name>
+        <url-pattern>/addpersontag</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addcollectiontag</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.AddCollectionTagServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addcollectiontag</servlet-name>
+        <url-pattern>/addcollectiontag</url-pattern>
+    </servlet-mapping>
+    
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>

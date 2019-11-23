@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -110,6 +111,22 @@ public class PPAssocDaoImplement implements PPAssocDao{
             return new Result<>(postIds, cursor.toWebSafeString());
         } else {
             return new Result<>(postIds);
+        }
+    }
+
+    @Override
+    public boolean isAlreadyIn(Long postId, Long personId) {
+        Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
+                Query.CompositeFilterOperator.AND, Arrays.<Query.Filter>asList(
+                new Query.FilterPredicate(PostPersonAssoc.PERSON_ID, Query.FilterOperator.EQUAL, personId),
+                new Query.FilterPredicate(PostPersonAssoc.POST_ID, Query.FilterOperator.EQUAL, postId)));
+        Query query=new Query(PPASSOC_KIND).setFilter(advancedFilter);
+        PreparedQuery preparedQuery = datastore.prepare(query);
+        QueryResultIterator<Entity> results=preparedQuery.asQueryResultIterator();
+        if (results.hasNext()){
+            return true;
+        } else {
+            return false;
         }
     }
 }

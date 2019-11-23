@@ -1,7 +1,6 @@
 package com.example.getstarted.basicactions;
 
-import com.example.getstarted.daos.CollectionDao;
-import com.example.getstarted.daos.CollectionDaoImplement;
+import com.example.getstarted.daos.*;
 import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Result;
 
@@ -15,12 +14,36 @@ import java.util.List;
 
 @WebServlet(name = "AddCollectionTagServlet")
 public class AddCollectionTagServlet extends HttpServlet {
+    /**
+     * after submit navigate to here
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String[] collectionIds=request.getParameterValues("collectionid");
+        Long postId=(Long)request.getSession().getServletContext().getAttribute("postidtoadd");
+        if(collectionIds==null||collectionIds.length==0){
+            response.sendRedirect("/addcollectiontag?postid="+postId);
+        }else {
+            PCAssocDao pcAssocDao=new PCAssocDaoImplement();
+            try {
+                for(int i=0;i<collectionIds.length;i++){
+                    Long personId=Long.decode(collectionIds[i]);
+                    if(!pcAssocDao.isAlreadyIn(postId,personId)){
+                        pcAssocDao.createPCAssoc(personId,postId);
+                    }
+                }
+                response.sendRedirect("/readpost?postid="+postId);
+            }catch (Exception e){
+                throw new ServletException("Error adding collection tag", e);
+            }
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long postId=Long.decode(request.getParameter("postId"));
+        Long postId=Long.decode(request.getParameter("postid"));
         CollectionDao collectionDao=(CollectionDaoImplement)this.getServletContext().getAttribute("collectiondao");
         String startCursor=request.getParameter("cursor");
         List<Collection> collections = null;
