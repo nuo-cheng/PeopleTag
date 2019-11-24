@@ -19,7 +19,7 @@ public class DeleteCollectionTagServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long collectionId=Long.decode(request.getParameter("personid"));
+        Long collectionId=Long.decode(request.getParameter("collectionid"));
         Long postId=Long.decode(request.getParameter("postid"));
         PCAssocDao assocDao=new PCAssocDaoImplement();
         Long assocId=assocDao.getAssocId(collectionId,postId);

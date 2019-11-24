@@ -239,7 +239,14 @@
         <url-pattern>/deletepersontag</url-pattern>
     </servlet-mapping>
 
-
+    <servlet>
+        <servlet-name>readpost</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.ReadPostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>readpost</servlet-name>
+        <url-pattern>/readpost</url-pattern>
+    </servlet-mapping>
     
     <!-- [START config] -->
     <context-param>
