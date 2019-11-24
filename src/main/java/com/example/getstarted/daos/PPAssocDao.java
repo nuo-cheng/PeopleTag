@@ -3,6 +3,7 @@ package com.example.getstarted.daos;
 import com.example.getstarted.objects.Result;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface PPAssocDao {
     Long createPPAssoc(Long personId, Long postId) throws SQLException;
@@ -16,4 +17,8 @@ public interface PPAssocDao {
     boolean isAlreadyIn(Long postId, Long personId);
 
     Long getAssocId(Long personId, Long postId);
+
+    List<Long> getPPAssocIdsFromPostId(Long postId);
+
+    List<Long> getPPAssocIdsFromPersonId(Long personId);
 }

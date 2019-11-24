@@ -3,6 +3,7 @@ package com.example.getstarted.daos;
 import com.example.getstarted.objects.Result;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface PCAssocDao {
     Long createPCAssoc(Long collectionId, Long postId) throws SQLException;
@@ -16,4 +17,8 @@ public interface PCAssocDao {
     boolean isAlreadyIn(Long postId, Long collectionId);
 
     Long getAssocId(Long collectionId, Long postId);
+
+    public List<Long> getPCAssocIdsFromPostId(Long postId);
+
+    public List<Long> getPCAssocIdsFromCollectionId(Long collectionId);
 }

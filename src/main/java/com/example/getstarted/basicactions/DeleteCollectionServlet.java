@@ -17,6 +17,9 @@ package com.example.getstarted.basicactions;
 
 import com.example.getstarted.daos.AssocDao;
 import com.example.getstarted.daos.CollectionDao;
+import com.example.getstarted.daos.PCAssocDao;
+import com.example.getstarted.daos.PCAssocDaoImplement;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +48,7 @@ public class DeleteCollectionServlet extends HttpServlet {
     Long id = Long.decode(req.getParameter("id"));
     CollectionDao collectiondaodao = (CollectionDao) this.getServletContext().getAttribute("collectiondao");
     AssocDao assocDao=(AssocDao)this.getServletContext().getAttribute("assocdao");
+    PCAssocDao pcAssocDao=new PCAssocDaoImplement();
     try {
       //delete related assocs
       List<Long> assocIds=assocDao.getAssocIdsFromCollectionId(id);
@@ -53,6 +57,14 @@ public class DeleteCollectionServlet extends HttpServlet {
           assocDao.deleteAssoc(assocIds.get(i));
         }
       }
+
+      List<Long> pcAssocIds=pcAssocDao.getPCAssocIdsFromCollectionId(id);
+      if(!pcAssocIds.isEmpty()){
+        for(int i=0;i<pcAssocIds.size();i++){
+          pcAssocDao.deletePCAssoc(pcAssocIds.get(i));
+        }
+      }
+
       //delete collection
       collectiondaodao.deleteCollection(id);
       resp.sendRedirect("/collections");

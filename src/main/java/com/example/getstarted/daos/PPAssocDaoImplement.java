@@ -147,4 +147,36 @@ public class PPAssocDaoImplement implements PPAssocDao{
 //        return (Long)entity.getProperty(Assoc.ID);
         return entity.getKey().getId();
     }
+
+    @Override
+    public List<Long> getPPAssocIdsFromPostId(Long postId) {
+        Query query=new Query(PPASSOC_KIND)
+                .setFilter(new Query.FilterPredicate(
+                        PostPersonAssoc.POST_ID, Query.FilterOperator.EQUAL,postId))
+                .addSort(PostPersonAssoc.PERSON_ID, Query.SortDirection.ASCENDING);
+        PreparedQuery preparedQuery=datastore.prepare(query);
+        QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator();
+        List<PostPersonAssoc> resultAssocs = entitiesToPPAssocs(results);
+        List<Long> ppAssocIds=new ArrayList<>();
+        for(int i=0;i<resultAssocs.size();i++){
+            ppAssocIds.add(resultAssocs.get(i).getId());
+        }
+        return ppAssocIds;
+    }
+
+    @Override
+    public List<Long> getPPAssocIdsFromPersonId(Long personId) {
+        Query query=new Query(PPASSOC_KIND)
+                .setFilter(new Query.FilterPredicate(
+                        PostPersonAssoc.PERSON_ID, Query.FilterOperator.EQUAL,personId))
+                .addSort(PostPersonAssoc.POST_ID, Query.SortDirection.ASCENDING);
+        PreparedQuery preparedQuery=datastore.prepare(query);
+        QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator();
+        List<PostPersonAssoc> resultAssocs = entitiesToPPAssocs(results);
+        List<Long> ppAssocIds=new ArrayList<>();
+        for(int i=0;i<resultAssocs.size();i++){
+            ppAssocIds.add(resultAssocs.get(i).getId());
+        }
+        return ppAssocIds;
+    }
 }

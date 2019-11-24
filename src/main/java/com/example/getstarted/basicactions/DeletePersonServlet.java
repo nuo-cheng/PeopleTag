@@ -16,7 +16,11 @@
 package com.example.getstarted.basicactions;
 
 import com.example.getstarted.daos.AssocDao;
+import com.example.getstarted.daos.PPAssocDao;
+import com.example.getstarted.daos.PPAssocDaoImplement;
 import com.example.getstarted.daos.PersonDao;
+import com.example.getstarted.objects.Person;
+import com.example.getstarted.objects.PostPersonAssoc;
 
 import java.io.IOException;
 import java.util.List;
@@ -46,11 +50,18 @@ public class DeletePersonServlet extends HttpServlet {
     Long id = Long.decode(req.getParameter("id"));
     PersonDao dao = (PersonDao) this.getServletContext().getAttribute("dao");
     AssocDao assocDao=(AssocDao)this.getServletContext().getAttribute("assocdao");
+    PPAssocDao ppAssocDao=new PPAssocDaoImplement();
     try {
       List<Long> assocIds=assocDao.getAssocIdsFromPersonId(id);
       if(!assocIds.isEmpty()){
         for(int i=0;i<assocIds.size();i++){
           assocDao.deleteAssoc(assocIds.get(i));
+        }
+      }
+      List<Long> ppAssocIds=ppAssocDao.getPPAssocIdsFromPersonId(id);
+      if(!ppAssocIds.isEmpty()){
+        for(int i=0;i<ppAssocIds.size();i++){
+          ppAssocDao.deletePPAssoc(ppAssocIds.get(i));
         }
       }
       dao.deletePerson(id);

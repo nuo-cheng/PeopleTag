@@ -248,6 +248,14 @@
         <url-pattern>/readpost</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>deletepost</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.DeletePostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletepost</servlet-name>
+        <url-pattern>/deletepost</url-pattern>
+    </servlet-mapping>
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>

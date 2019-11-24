@@ -148,4 +148,36 @@ public class PCAssocDaoImplement implements PCAssocDao{
 //        return (Long)entity.getProperty(Assoc.ID);
         return entity.getKey().getId();
     }
+
+    @Override
+    public List<Long> getPCAssocIdsFromPostId(Long postId) {
+        Query query=new Query(PCASSOC_KIND)
+                .setFilter(new Query.FilterPredicate(
+                        PostCollectionAssoc.POST_ID, Query.FilterOperator.EQUAL,postId))
+                .addSort(PostCollectionAssoc.COLLECTION_ID, Query.SortDirection.ASCENDING);
+        PreparedQuery preparedQuery=datastore.prepare(query);
+        QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator();
+        List<PostCollectionAssoc> resultAssocs = entitiesToPCAssocs(results);
+        List<Long> pcAssocIds=new ArrayList<>();
+        for(int i=0;i<resultAssocs.size();i++){
+            pcAssocIds.add(resultAssocs.get(i).getId());
+        }
+        return pcAssocIds;
+    }
+
+    @Override
+    public List<Long> getPCAssocIdsFromCollectionId(Long collectionId) {
+        Query query=new Query(PCASSOC_KIND)
+                .setFilter(new Query.FilterPredicate(
+                        PostCollectionAssoc.COLLECTION_ID, Query.FilterOperator.EQUAL,collectionId))
+                .addSort(PostCollectionAssoc.POST_ID, Query.SortDirection.ASCENDING);
+        PreparedQuery preparedQuery=datastore.prepare(query);
+        QueryResultIterator<Entity> results = preparedQuery.asQueryResultIterator();
+        List<PostCollectionAssoc> resultAssocs = entitiesToPCAssocs(results);
+        List<Long> pcAssocIds=new ArrayList<>();
+        for(int i=0;i<resultAssocs.size();i++){
+            pcAssocIds.add(resultAssocs.get(i).getId());
+        }
+        return pcAssocIds;
+    }
 }
