@@ -229,6 +229,17 @@
         <servlet-name>addcollectiontag</servlet-name>
         <url-pattern>/addcollectiontag</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deletepersontag</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.DeletePersonTagServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletepersontag</servlet-name>
+        <url-pattern>/deletepersontag</url-pattern>
+    </servlet-mapping>
+
+
     
     <!-- [START config] -->
     <context-param>

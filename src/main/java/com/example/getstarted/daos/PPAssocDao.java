@@ -14,4 +14,6 @@ public interface PPAssocDao {
     Result<Long> readPosts(Long personId, String startCursorString) throws SQLException;
 
     boolean isAlreadyIn(Long postId, Long personId);
+
+    Long getAssocId(Long personId, Long postId);
 }

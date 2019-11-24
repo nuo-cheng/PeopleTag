@@ -14,4 +14,6 @@ public interface PCAssocDao {
     Result<Long> readPosts(Long collectionId, String startCursorString) throws SQLException;
 
     boolean isAlreadyIn(Long postId, Long collectionId);
+
+    Long getAssocId(Long collectionId, Long postId);
 }

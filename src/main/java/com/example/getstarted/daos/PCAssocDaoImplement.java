@@ -130,4 +130,22 @@ public class PCAssocDaoImplement implements PCAssocDao{
             return false;
         }
     }
+
+    @Override
+    public Long getAssocId(Long collectionId, Long postId) {
+        Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
+                Query.CompositeFilterOperator.AND, Arrays.<Query.Filter>asList(
+                new Query.FilterPredicate(PostCollectionAssoc.COLLECTION_ID, Query.FilterOperator.EQUAL, collectionId),
+                new Query.FilterPredicate(PostCollectionAssoc.POST_ID, Query.FilterOperator.EQUAL, postId)));
+        Query query = new Query(PCASSOC_KIND).setFilter(advancedFilter);
+        //System.out.println(query);
+        PreparedQuery preparedQuery = datastore.prepare(query);
+        QueryResultIterator<Entity> results=preparedQuery.asQueryResultIterator();
+        assert(results.hasNext());
+        Entity entity=results.next();
+        assert(null != entity);
+        System.out.println(entity.getKey().getId());
+//        return (Long)entity.getProperty(Assoc.ID);
+        return entity.getKey().getId();
+    }
 }
