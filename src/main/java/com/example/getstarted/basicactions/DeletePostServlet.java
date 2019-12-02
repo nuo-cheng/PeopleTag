@@ -18,7 +18,8 @@ public class DeletePostServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long postId=Long.decode(request.getParameter("postid"));
-        PostDao postDao=new PostDaoImplement();
+        PostDao postDao = (PostDao) this.getServletContext().getAttribute("postdao");
+//        PostDao postDao=new PostDaoImplement();
         PPAssocDao ppAssocDao=new PPAssocDaoImplement();
         PCAssocDao pcAssocDao=new PCAssocDaoImplement();
         try {
@@ -34,7 +35,8 @@ public class DeletePostServlet extends HttpServlet {
                     pcAssocDao.deletePCAssoc(pcAssocIds.get(i));
                 }
             }
-            response.sendRedirect("/listposts");
+            postDao.deletePost(postId);
+            response.sendRedirect("/post");
         }catch (Exception e){
             throw new ServletException("Error deleting Post");
         }
