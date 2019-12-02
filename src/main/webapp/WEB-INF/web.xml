@@ -55,6 +55,7 @@
       <filter-name>ListByUserFilter</filter-name>
       <url-pattern>/persons/mine</url-pattern>
         <url-pattern>/mycollections</url-pattern>
+        <url-pattern>/mypost</url-pattern>
     </filter-mapping>
 
     <servlet>
@@ -282,6 +283,15 @@
     <servlet-mapping>
         <servlet-name>updatepost</servlet-name>
         <url-pattern>/updatepost</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>listpostbyuser</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.ListPostByUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listpostbyuser</servlet-name>
+        <url-pattern>/mypost</url-pattern>
     </servlet-mapping>
     <!-- [START config] -->
     <context-param>
