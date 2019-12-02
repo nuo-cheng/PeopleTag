@@ -35,7 +35,7 @@ Copyright 2016 Google Inc.
 
     <div class="form-group">
           <label for="content">Content</label>
-          <textarea type="text" name="content" id="content" value="${fn:escapeXml(post.content)}" class="form-control" /textarea>
+          <input type="text" name="content" id="content" value="${fn:escapeXml(post.content)}" class="form-control" />
     </div>
 
     <div class="form-group">

@@ -46,6 +46,7 @@ public class ListPersonServlet extends HttpServlet {
     PersonDao dao = null;
     CollectionDao collectionDao=null;
     AssocDao assocDao=null;
+    PostDao postDao = null;
 
     CloudStorageHelper storageHelper = new CloudStorageHelper();
 
@@ -56,6 +57,7 @@ public class ListPersonServlet extends HttpServlet {
         dao = new DatastoreDao();
         collectionDao=new CollectionDaoImplement();
         assocDao=new AssocDaoImplement();
+        postDao=new PostDaoImplement();
         break;
       case "cloudsql":
         try {
@@ -83,6 +85,7 @@ public class ListPersonServlet extends HttpServlet {
     this.getServletContext().setAttribute("dao", dao);
     this.getServletContext().setAttribute("collectiondao", collectionDao);
     this.getServletContext().setAttribute("assocdao", assocDao);
+    this.getServletContext().setAttribute("postdao", postDao);
 
     this.getServletContext().setAttribute("storageHelper", storageHelper);
     this.getServletContext().setAttribute(

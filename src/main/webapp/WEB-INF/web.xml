@@ -256,6 +256,33 @@
         <servlet-name>deletepost</servlet-name>
         <url-pattern>/deletepost</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>listpost</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.ListPostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listpost</servlet-name>
+        <url-pattern>/post</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createpost</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.CreatePostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createpost</servlet-name>
+        <url-pattern>/createpost</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updatepost</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.UpdatePostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updatepost</servlet-name>
+        <url-pattern>/updatepost</url-pattern>
+    </servlet-mapping>
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>
