@@ -7,7 +7,7 @@
         <p>No persons found</p>
     </c:when>
     <c:otherwise>
-        <form action="/addpersontag">
+        <form action="/addpersontag" method="post">
             <c:forEach items="${persons}" var="person">
             <div class="media">
                 <input type="checkbox" name="personid" value="${person.id}"> ${person.first} ${person.last}<br>

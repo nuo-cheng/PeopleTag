@@ -7,7 +7,7 @@
         <p>No collections found</p>
     </c:when>
     <c:otherwise>
-        <form action="/addcollectiontag">
+        <form action="/addcollectiontag" method="post">
             <c:forEach items="${collections}" var="collection">
             <div class="media">
                 <input type="checkbox" name="collectionid" value="${collection.id}"> ${collection.collectionName}<br>

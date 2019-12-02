@@ -240,6 +240,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>deletecollectiontag</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.DeleteCollectionTagServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deletecollectiontag</servlet-name>
+        <url-pattern>/deletecollectiontag</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
         <servlet-name>readpost</servlet-name>
         <servlet-class>com.example.getstarted.basicactions.ReadPostServlet</servlet-class>
     </servlet>

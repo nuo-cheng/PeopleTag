@@ -11,7 +11,7 @@
             <i class="glyphicon glyphicon-trash"></i>
             Delete post
         </a>
-        <a href="/addperontag?postid=${post.id}" class="btn btn-success btn-sm">
+        <a href="/addpersontag?postid=${post.id}" class="btn btn-success btn-sm">
             <i class="glyphicon glyphicon glyphicon-plus-sign"></i>
             Add person tag
         </a>
