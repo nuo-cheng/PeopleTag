@@ -74,6 +74,32 @@ Copyright 2016 Google Inc.
             </c:if>
         </c:otherwise>
     </c:choose>
+
+    <h3>Posts including ${fn:escapeXml(person.first)} </h3>
+        <c:choose>
+            <c:when test="${empty postsofperson}">
+                <p>No posts found</p>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${postsofperson}" var="post">
+                    <div class="media">
+                        <a href="/readpost?postid=${post.id}">
+                            <div class="media-body">
+                                <h4>${post.title}</h4>
+                            </div>
+                        </a>
+                    </div>
+                </c:forEach>
+                <c:if test="${not empty cursor}">
+                    <nav>
+                        <ul class="pager">
+                            <li><a href="?cursor=${cursor}&id=${person.id}">More</a></li>
+                        </ul>
+                    </nav>
+                </c:if>
+            </c:otherwise>
+        </c:choose>
+
 </div>
 
 <!-- [END view] -->
