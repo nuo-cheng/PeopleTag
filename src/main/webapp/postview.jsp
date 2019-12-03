@@ -72,8 +72,8 @@
     </c:choose>
     <h4>Number of scores: ${post.numOfScores}</h4>
     <h3>Average Score: ${post.averageScore}</h3>
-    <form action="/updatescore">
-        <select id="score">
+    <form action="/updatescore?postid=${post.id}" method="post">
+        <select id="score" name="score">
             <option>0</option>
             <option>1</option>
             <option>2</option>

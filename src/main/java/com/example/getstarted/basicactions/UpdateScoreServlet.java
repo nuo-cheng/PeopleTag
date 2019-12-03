@@ -14,17 +14,17 @@ import java.io.IOException;
 @WebServlet(name = "UpdateScoreServlet")
 public class UpdateScoreServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int score=Integer.parseInt(request.getParameter("score"));
+        Long score=Long.decode(request.getParameter("score"));
         Long id=Long.decode(request.getParameter("postid"));
         PostDao postDao=new PostDaoImplement();
         try{
             Post post=postDao.readPost(id);
             double averageScore=post.getAverageScore();
-            int numOfScores=post.getNumOfScores();
+            Long numOfScores=post.getNumOfScores();
             post.setNumOfScores(numOfScores+1);
             post.setAverageScore((averageScore*numOfScores+score)/(numOfScores+1));
             postDao.updatePost(post);
