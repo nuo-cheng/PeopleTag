@@ -26,6 +26,9 @@
             <h4 class="post-title">
                 ${fn:escapeXml(post.title)}
             </h4>
+            <a href="https://${post.url1}">${post.url1}</a><br/>
+            <a href="https://${post.url2}">${post.url2}</a><br/>
+            <a href="https://${post.url3}">${post.url3}</a><br/>
             <h5 class="post-content">${fn:escapeXml(not empty post.content?post.content:'No Content')}</h5>
             <small class="post-added-by">Added by
                 ${fn:escapeXml(not empty post.createdBy?post.createdBy:'Anonymous')}</small>

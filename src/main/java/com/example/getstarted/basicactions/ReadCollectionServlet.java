@@ -63,6 +63,7 @@ public class ReadCollectionServlet extends HttpServlet {
             postEndCursor=postIdsAndCursor.cursor;
             for(int i=0;i<postIds.size();i++){
                 Long id=postIds.get(i);
+                System.out.println(id);
                 Post post=postDao.readPost(id);
                 posts.add(post);
             }

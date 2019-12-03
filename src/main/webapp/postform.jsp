@@ -29,8 +29,18 @@ Copyright 2016 Google Inc.
     </div>
 
     <div class="form-group">
-      <label for="url">URL</label>
-      <input type="text" name="url" id="url" value="${post.url}" class="form-control" />
+      <label for="url1">URL1</label>
+      <input type="text" name="url1" id="url1" value="${post.url1}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="url2">URL2</label>
+      <input type="text" name="url2" id="url2" value="${post.url2}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="url3">URL</label>
+      <input type="text" name="url3" id="url3" value="${post.url3}" class="form-control" />
     </div>
 
     <div class="form-group">

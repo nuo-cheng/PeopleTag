@@ -29,7 +29,13 @@ public class Post {
   private String content;
   private String createdBy;
   private String createdById;
-  private String url;
+
+
+  private String url1;
+  private String url2;
+  private String url3;
+
+
   private Long id;
   private String imageUrl;
   private int numOfScores;
@@ -43,9 +49,15 @@ public class Post {
   public static final String CREATED_BY_ID = "createdById";
   public static final String CONTENT = "content";
   public static final String ID = "id";
+
+
+  public static final String URL_1 = "url1";
+  public static final String URL_2 = "url2";
+  public static final String URL_3 = "url3";
+
   public static final String AVERAGESCORE="averageScore";
   public static final String NUMOFSCORES="numOfScore";
-  public static final String URL = "url";
+  
   public static final String IMAGE_URL = "imageUrl";
 
 
@@ -64,7 +76,11 @@ public class Post {
     this.content = builder.content;
     this.createdBy = builder.createdBy;
     this.createdById = builder.createdById;
-    this.url = builder.url;
+
+
+    this.url1 = builder.url1;
+    this.url2 = builder.url2;
+    this.url3 = builder.url3;
     this.id = builder.id;
     this.imageUrl = builder.imageUrl;
     this.numOfScores=builder.numOfScores;
@@ -82,9 +98,16 @@ public class Post {
     private String createdById;
     private Long id;
     private String imageUrl;
-    private String url;
+
+    private String url1;
+    private String url2;
+    private String url3;
+
+
+
     private int numOfScores;
     private double averageScore;
+
     /**
      * build first name
      * @param title
@@ -127,11 +150,31 @@ public class Post {
 
     /**
      * build description
-     * @param url
+     * @param url1
      * @return
      */
-    public Builder url(String url) {
-      this.url = url;
+    public Builder url1(String url1) {
+      this.url1 = url1;
+      return this;
+    }
+
+    /**
+     * build description
+     * @param url2
+     * @return
+     */
+    public Builder url2(String url2) {
+      this.url2 = url2;
+      return this;
+    }
+
+    /**
+     * build description
+     * @param url3
+     * @return
+     */
+    public Builder url3(String url3) {
+      this.url3 = url3;
       return this;
     }
 
@@ -247,20 +290,36 @@ public class Post {
     return content;
   }
 
-  public String getUrl() {
-    return url;
+  public String getUrl1() {
+    return url1;
   }
 
   public void setTitle(String title) {
     this.title = title;
   }
 
+  public String getUrl2() {
+    return url2;
+  }
+
+  public String getUrl3() {
+    return url3;
+  }
+
+  public void setUrl2(String url2) {
+    this.url2 = url2;
+  }
+
+  public void setUrl3(String url3) {
+    this.url3 = url3;
+  }
+
   public void setContent(String content) {
     this.content = content;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setUrl1(String url1) {
+    this.url1 = url1;
   }
 
   public int getNumOfScores() {

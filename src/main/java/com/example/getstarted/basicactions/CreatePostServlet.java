@@ -102,7 +102,9 @@ public class CreatePostServlet extends HttpServlet {
     Post post = new Post.Builder()
         .title(params.get("title"))
         .content(params.get("content"))
-        .url(params.get("url"))
+        .url1(params.get("url1"))
+        .url2(params.get("url2"))
+        .url3(params.get("url3"))
         .imageUrl(null == newImageUrl ? params.get("imageUrl") : newImageUrl)
         // [START auth]
         .createdBy(createdByString)

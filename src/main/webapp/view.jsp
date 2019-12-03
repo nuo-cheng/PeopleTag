@@ -90,10 +90,10 @@ Copyright 2016 Google Inc.
                         </a>
                     </div>
                 </c:forEach>
-                <c:if test="${not empty cursor}">
+                <c:if test="${not empty postcursor}">
                     <nav>
                         <ul class="pager">
-                            <li><a href="?cursor=${cursor}&id=${person.id}">More</a></li>
+                            <li><a href="?postcursor=${fn:escapeXml(postcursor)}&id=${person.id}">More</a></li>
                         </ul>
                     </nav>
                 </c:if>

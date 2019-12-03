@@ -48,6 +48,7 @@ public class ReadPersonServlet extends HttpServlet {
       ServletException {
     Long id = Long.decode(req.getParameter("id"));
     String startCursor = req.getParameter("cursor");
+    String postStartCursor = req.getParameter("postcursor");
     PersonDao dao = (PersonDao) this.getServletContext().getAttribute("dao");
     AssocDao assocDao=(AssocDao) this.getServletContext().getAttribute("assocdao");
     CollectionDao collectionDao=(CollectionDao) this.getServletContext().getAttribute("collectiondao");
@@ -58,6 +59,7 @@ public class ReadPersonServlet extends HttpServlet {
     List<Long> postIds;
     List<Post> posts = new ArrayList<>();
     String endCursor;
+    String postEndCursor;
     try {
       Person person = dao.readPerson(id);
       Result<Long> collectionIdsAndCursor=assocDao.readCollections(id,startCursor);
@@ -69,8 +71,9 @@ public class ReadPersonServlet extends HttpServlet {
         collections.add(collection);
       }
 
-      Result<Long> postIdsAndCursor= ppAssocDao.readPosts(id,null);
+      Result<Long> postIdsAndCursor= ppAssocDao.readPosts(id, postStartCursor);
       postIds = postIdsAndCursor.result;
+      postEndCursor = postIdsAndCursor.cursor;
       for (int i = 0; i < postIds.size(); i++){
         Long postId = postIds.get(i);
         Post post = postDao.readPost(postId);
@@ -82,6 +85,7 @@ public class ReadPersonServlet extends HttpServlet {
       req.getSession().getServletContext().setAttribute("collectionsofperson",collections);
       req.getSession().getServletContext().setAttribute("postsofperson", posts);
       req.setAttribute("cursor",endCursor);
+      req.setAttribute("postcursor", postEndCursor);
       req.getRequestDispatcher("/base.jsp").forward(req, resp);
     } catch (Exception e) {
       throw new ServletException("Error reading person", e);

@@ -55,7 +55,7 @@ public class UpdatePostServlet extends HttpServlet {
       Post post = dao.readPost(Long.decode(req.getParameter("postid")));
       req.setAttribute("post", post);
       req.setAttribute("action", "Edit");
-      req.setAttribute("destination", "updatepost");
+      req.setAttribute("destination", "updatepost?postid="+post.getId());
       req.setAttribute("page", "postform");
       req.getRequestDispatcher("/base.jsp").forward(req, resp);
     } catch (Exception e) {
@@ -97,22 +97,24 @@ public class UpdatePostServlet extends HttpServlet {
     }
 
     try {
-      Post oldPost = dao.readPost(Long.decode(params.get("id")));
+      Post oldPost = dao.readPost(Long.decode(req.getParameter("postid")));
 
       // [START personBuilder]
       Post post = new Post.Builder()
           .title(params.get("title"))
           .content(params.get("content"))
-          .url(params.get("url"))
+          .url1(params.get("url1"))
+          .url2(params.get("url2"))
+          .url3(params.get("url3"))
           .imageUrl(null == newImageUrl ? params.get("imageUrl") : newImageUrl)
-          .id(Long.decode(params.get("id")))
+          .id(Long.decode(req.getParameter("postid")))
           .createdBy(oldPost.getCreatedBy())
           .createdById(oldPost.getCreatedById())
           .build();
       // [END personBuilder]
 
       dao.updatePost(post);
-      resp.sendRedirect("/read?id=" + params.get("id"));
+      resp.sendRedirect("/readpost?postid=" + req.getParameter("postid"));
     } catch (Exception e) {
       throw new ServletException("Error updating person", e);
     }
