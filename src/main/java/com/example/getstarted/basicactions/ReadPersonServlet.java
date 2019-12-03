@@ -15,11 +15,10 @@
 
 package com.example.getstarted.basicactions;
 
-import com.example.getstarted.daos.AssocDao;
-import com.example.getstarted.daos.CollectionDao;
-import com.example.getstarted.daos.PersonDao;
+import com.example.getstarted.daos.*;
 import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Person;
+import com.example.getstarted.objects.Post;
 import com.example.getstarted.objects.Result;
 
 import java.io.IOException;
@@ -52,8 +51,12 @@ public class ReadPersonServlet extends HttpServlet {
     PersonDao dao = (PersonDao) this.getServletContext().getAttribute("dao");
     AssocDao assocDao=(AssocDao) this.getServletContext().getAttribute("assocdao");
     CollectionDao collectionDao=(CollectionDao) this.getServletContext().getAttribute("collectiondao");
+    PostDao postDao = (PostDao) this.getServletContext().getAttribute("postdao");
+    PPAssocDao ppAssocDao=new PPAssocDaoImplement();
     List<Collection> collections=new ArrayList<>();
     List<Long> collectionIds;
+    List<Long> postIds;
+    List<Post> posts = new ArrayList<>();
     String endCursor;
     try {
       Person person = dao.readPerson(id);
@@ -65,9 +68,19 @@ public class ReadPersonServlet extends HttpServlet {
         Collection collection=collectionDao.readCollection(collectionId);
         collections.add(collection);
       }
+
+      Result<Long> postIdsAndCursor= ppAssocDao.readPosts(id,null);
+      postIds = postIdsAndCursor.result;
+      for (int i = 0; i < postIds.size(); i++){
+        Long postId = postIds.get(i);
+        Post post = postDao.readPost(postId);
+        posts.add(post);
+      }
+
       req.setAttribute("person", person);
       req.setAttribute("page", "view");
       req.getSession().getServletContext().setAttribute("collectionsofperson",collections);
+      req.getSession().getServletContext().setAttribute("postsofperson", posts);
       req.setAttribute("cursor",endCursor);
       req.getRequestDispatcher("/base.jsp").forward(req, resp);
     } catch (Exception e) {
