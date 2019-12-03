@@ -2,7 +2,7 @@ package com.example.getstarted.objects;
 
 public class PostCollectionAssoc {
     public static final String ID="id";
-    public static final String COLLECTION_ID="personId";
+    public static final String COLLECTION_ID="collectionId";
     public static final String POST_ID="postId";
     private Long id;
     private Long collectionId;

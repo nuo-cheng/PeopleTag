@@ -30,9 +30,9 @@ public class AddCollectionTagServlet extends HttpServlet {
             PCAssocDao pcAssocDao=new PCAssocDaoImplement();
             try {
                 for(int i=0;i<collectionIds.length;i++){
-                    Long personId=Long.decode(collectionIds[i]);
-                    if(!pcAssocDao.isAlreadyIn(postId,personId)){
-                        pcAssocDao.createPCAssoc(personId,postId);
+                    Long collectionId=Long.decode(collectionIds[i]);
+                    if(!pcAssocDao.isAlreadyIn(postId,collectionId)){
+                        pcAssocDao.createPCAssoc(collectionId,postId);
                     }
                 }
                 response.sendRedirect("/readpost?postid="+postId);

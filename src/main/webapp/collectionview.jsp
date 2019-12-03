@@ -71,4 +71,33 @@
             </c:if>
         </c:otherwise>
     </c:choose>
+
+        <c:choose>
+            <c:when test="${empty posts}">
+                <p>No posts found</p>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${posts}" var="post">
+                    <div class="media">
+                        <a href="/readpost?postid=${post.id}">
+                            <div class="media-left">
+                                <img alt="ahhh" hspace="15"height="200"src="${fn:escapeXml(not empty post.imageUrl?post.imageUrl:'http://placekitten.com/g/128/192')}">
+                            </div>
+                            <div class="media-body">
+                                <h4>${fn:escapeXml(post.title)}</h4>
+                                <p>${fn:escapeXml(post.content)}</p>
+                            </div>
+                        </a>
+                    </div>
+                </c:forEach>
+                <c:if test="${not empty postcursor}">
+                    <nav>
+                        <ul class="pager">
+                            <li><a href="?postcursor=${fn:escapeXml(postcursor)}&collectionid=${collection.id}">More</a></li>
+                        </ul>
+                    </nav>
+                </c:if>
+            </c:otherwise>
+        </c:choose>
+
 </div>
