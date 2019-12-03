@@ -38,8 +38,8 @@ public class Post {
 
   private Long id;
   private String imageUrl;
-  private int numOfScores;
-  private double averageScore;
+  private Long numOfScores ;
+  private double averageScore ;
 
   /**
    * static keys
@@ -105,7 +105,7 @@ public class Post {
 
 
 
-    private int numOfScores;
+    private Long numOfScores;
     private double averageScore;
 
     /**
@@ -203,7 +203,7 @@ public class Post {
       return this;
     }
 
-    public Builder numOfScores(Integer numOfScores){
+    public Builder numOfScores(Long numOfScores){
       this.numOfScores=numOfScores;
       return this;
     }
@@ -322,11 +322,11 @@ public class Post {
     this.url1 = url1;
   }
 
-  public int getNumOfScores() {
+  public Long getNumOfScores() {
     return numOfScores;
   }
 
-  public void setNumOfScores(int numOfScores) {
+  public void setNumOfScores(Long numOfScores) {
     this.numOfScores = numOfScores;
   }
 
