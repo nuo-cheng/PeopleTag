@@ -30,12 +30,16 @@ public class Post {
   private String createdBy;
   private String createdById;
 
+
   private String url1;
   private String url2;
   private String url3;
 
+
   private Long id;
   private String imageUrl;
+  private int numOfScores;
+  private double averageScore;
 
   /**
    * static keys
@@ -46,9 +50,14 @@ public class Post {
   public static final String CONTENT = "content";
   public static final String ID = "id";
 
+
   public static final String URL_1 = "url1";
   public static final String URL_2 = "url2";
   public static final String URL_3 = "url3";
+
+  public static final String AVERAGESCORE="averageScore";
+  public static final String NUMOFSCORES="numOfScore";
+  
   public static final String IMAGE_URL = "imageUrl";
 
 
@@ -68,12 +77,14 @@ public class Post {
     this.createdBy = builder.createdBy;
     this.createdById = builder.createdById;
 
+
     this.url1 = builder.url1;
     this.url2 = builder.url2;
     this.url3 = builder.url3;
     this.id = builder.id;
     this.imageUrl = builder.imageUrl;
-
+    this.numOfScores=builder.numOfScores;
+    this.averageScore=builder.averageScore;
 
   }
 
@@ -87,9 +98,15 @@ public class Post {
     private String createdById;
     private Long id;
     private String imageUrl;
+
     private String url1;
     private String url2;
     private String url3;
+
+
+
+    private int numOfScores;
+    private double averageScore;
 
     /**
      * build first name
@@ -178,6 +195,16 @@ public class Post {
      */
     public Builder imageUrl(String imageUrl) {
       this.imageUrl = imageUrl;
+      return this;
+    }
+
+    public Builder averageScore(Double averageScore){
+      this.averageScore=averageScore;
+      return this;
+    }
+
+    public Builder numOfScores(Integer numOfScores){
+      this.numOfScores=numOfScores;
       return this;
     }
 
@@ -293,6 +320,22 @@ public class Post {
 
   public void setUrl1(String url1) {
     this.url1 = url1;
+  }
+
+  public int getNumOfScores() {
+    return numOfScores;
+  }
+
+  public void setNumOfScores(int numOfScores) {
+    this.numOfScores = numOfScores;
+  }
+
+  public double getAverageScore() {
+    return averageScore;
+  }
+
+  public void setAverageScore(double averageScore) {
+    this.averageScore = averageScore;
   }
 
   // [END builder]

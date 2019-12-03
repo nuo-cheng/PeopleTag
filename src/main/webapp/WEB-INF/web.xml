@@ -303,6 +303,16 @@
         <servlet-name>listpostbyuser</servlet-name>
         <url-pattern>/mypost</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>updatescore</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.UpdateScoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updatescore</servlet-name>
+        <url-pattern>/updatescore</url-pattern>
+    </servlet-mapping>
+    
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>

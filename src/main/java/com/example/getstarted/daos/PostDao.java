@@ -75,5 +75,6 @@ public interface PostDao {
    * @throws SQLException
    */
   Result<Post> listPostByUser(String userId, String startCursor) throws SQLException;
+
 }
 // [END example]
