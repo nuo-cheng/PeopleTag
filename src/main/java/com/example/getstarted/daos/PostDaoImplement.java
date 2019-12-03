@@ -60,6 +60,8 @@ public class PostDaoImplement implements PostDao {
         .createdBy((String) entity.getProperty(Post.CREATED_BY))
         .createdById((String) entity.getProperty(Post.CREATED_BY_ID))
         .url((String) entity.getProperty(Post.URL))
+            .averageScore((Double)entity.getProperty(Post.AVERAGESCORE))
+            .numOfScores((Integer)entity.getProperty(Post.NUMOFSCORES))
         .build();
   }
 
@@ -78,7 +80,8 @@ public class PostDaoImplement implements PostDao {
     incPostEntity.setProperty(Post.IMAGE_URL, post.getImageUrl());
     incPostEntity.setProperty(Post.CREATED_BY, post.getCreatedBy());
     incPostEntity.setProperty(Post.CREATED_BY_ID, post.getCreatedById());
-
+    incPostEntity.setProperty(Post.AVERAGESCORE,post.getAverageScore());
+    incPostEntity.setProperty(Post.NUMOFSCORES,post.getNumOfScores());
     Key postKey = datastore.put(incPostEntity); // Save the Entity
     return postKey.getId();                     // The ID of the Key
   }
@@ -114,7 +117,8 @@ public class PostDaoImplement implements PostDao {
     entity.setProperty(Post.IMAGE_URL, post.getImageUrl());
     entity.setProperty(Post.CREATED_BY, post.getCreatedBy());
     entity.setProperty(Post.CREATED_BY_ID, post.getCreatedById());
-
+    entity.setProperty(Post.NUMOFSCORES,post.getNumOfScores());
+    entity.setProperty(Post.AVERAGESCORE,post.getAverageScore());
     datastore.put(entity);                   // Update the Entity
   }
 
@@ -199,4 +203,5 @@ public class PostDaoImplement implements PostDao {
       return new Result<>(resultPost);
     }
   }
+
 }

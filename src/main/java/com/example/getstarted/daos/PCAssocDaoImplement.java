@@ -105,7 +105,7 @@ public class PCAssocDaoImplement implements PCAssocDao{
         }
         List<Long> postIds=new ArrayList<>();
         for(int i=0;i<resultAssoc.result.size();i++){
-            postIds.add(resultAssoc.result.get(i).getCollectionId());
+            postIds.add(resultAssoc.result.get(i).getPostId());
         }
 //        Result<Long> personIdAndCursor=new Result<>(personIds,cursor.toWebSafeString());
         if (cursor != null && postIds.size() == 9) {         // Are we paging? Save Cursor

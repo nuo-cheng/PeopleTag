@@ -29,11 +29,11 @@ public class Post {
   private String content;
   private String createdBy;
   private String createdById;
-
   private String url;
-
   private Long id;
   private String imageUrl;
+  private int numOfScores;
+  private double averageScore;
 
   /**
    * static keys
@@ -43,7 +43,8 @@ public class Post {
   public static final String CREATED_BY_ID = "createdById";
   public static final String CONTENT = "content";
   public static final String ID = "id";
-
+  public static final String AVERAGESCORE="averageScore";
+  public static final String NUMOFSCORES="numOfScore";
   public static final String URL = "url";
   public static final String IMAGE_URL = "imageUrl";
 
@@ -63,11 +64,11 @@ public class Post {
     this.content = builder.content;
     this.createdBy = builder.createdBy;
     this.createdById = builder.createdById;
-
     this.url = builder.url;
     this.id = builder.id;
     this.imageUrl = builder.imageUrl;
-
+    this.numOfScores=builder.numOfScores;
+    this.averageScore=builder.averageScore;
 
   }
 
@@ -82,7 +83,8 @@ public class Post {
     private Long id;
     private String imageUrl;
     private String url;
-
+    private int numOfScores;
+    private double averageScore;
     /**
      * build first name
      * @param title
@@ -150,6 +152,16 @@ public class Post {
      */
     public Builder imageUrl(String imageUrl) {
       this.imageUrl = imageUrl;
+      return this;
+    }
+
+    public Builder averageScore(Double averageScore){
+      this.averageScore=averageScore;
+      return this;
+    }
+
+    public Builder numOfScores(Integer numOfScores){
+      this.numOfScores=numOfScores;
       return this;
     }
 
@@ -249,6 +261,22 @@ public class Post {
 
   public void setUrl(String url) {
     this.url = url;
+  }
+
+  public int getNumOfScores() {
+    return numOfScores;
+  }
+
+  public void setNumOfScores(int numOfScores) {
+    this.numOfScores = numOfScores;
+  }
+
+  public double getAverageScore() {
+    return averageScore;
+  }
+
+  public void setAverageScore(double averageScore) {
+    this.averageScore = averageScore;
   }
 
   // [END builder]
