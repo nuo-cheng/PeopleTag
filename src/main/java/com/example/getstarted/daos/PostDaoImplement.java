@@ -59,7 +59,9 @@ public class PostDaoImplement implements PostDao {
         .imageUrl((String) entity.getProperty(Post.IMAGE_URL))
         .createdBy((String) entity.getProperty(Post.CREATED_BY))
         .createdById((String) entity.getProperty(Post.CREATED_BY_ID))
-        .url((String) entity.getProperty(Post.URL))
+        .url1((String) entity.getProperty(Post.URL_1))
+        .url2((String) entity.getProperty(Post.URL_2))
+        .url3((String) entity.getProperty(Post.URL_3))
         .build();
   }
 
@@ -74,7 +76,9 @@ public class PostDaoImplement implements PostDao {
     Entity incPostEntity = new Entity(POST_KIND);  // Key will be assigned once written
     incPostEntity.setProperty(Post.TITLE, post.getTitle());
     incPostEntity.setProperty(Post.CONTENT, post.getContent());
-    incPostEntity.setProperty(Post.URL, post.getUrl());
+    incPostEntity.setProperty(Post.URL_1, post.getUrl1());
+    incPostEntity.setProperty(Post.URL_2, post.getUrl2());
+    incPostEntity.setProperty(Post.URL_3, post.getUrl3());
     incPostEntity.setProperty(Post.IMAGE_URL, post.getImageUrl());
     incPostEntity.setProperty(Post.CREATED_BY, post.getCreatedBy());
     incPostEntity.setProperty(Post.CREATED_BY_ID, post.getCreatedById());
@@ -110,7 +114,9 @@ public class PostDaoImplement implements PostDao {
     Entity entity = new Entity(key);         // Convert Person to an Entity
     entity.setProperty(Post.TITLE, post.getTitle());
     entity.setProperty(Post.CONTENT, post.getContent());
-    entity.setProperty(Post.URL, post.getUrl());
+    entity.setProperty(Post.URL_1, post.getUrl1());
+    entity.setProperty(Post.URL_2, post.getUrl2());
+    entity.setProperty(Post.URL_3, post.getUrl3());
     entity.setProperty(Post.IMAGE_URL, post.getImageUrl());
     entity.setProperty(Post.CREATED_BY, post.getCreatedBy());
     entity.setProperty(Post.CREATED_BY_ID, post.getCreatedById());

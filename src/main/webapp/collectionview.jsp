@@ -72,7 +72,11 @@
         </c:otherwise>
     </c:choose>
 
-        <c:choose>
+
+
+</div>
+<h3>Posts including ${fn:escapeXml(collection.collectionName)} </h3>
+<c:choose>
             <c:when test="${empty posts}">
                 <p>No posts found</p>
             </c:when>
@@ -80,12 +84,8 @@
                 <c:forEach items="${posts}" var="post">
                     <div class="media">
                         <a href="/readpost?postid=${post.id}">
-                            <div class="media-left">
-                                <img alt="ahhh" hspace="15"height="200"src="${fn:escapeXml(not empty post.imageUrl?post.imageUrl:'http://placekitten.com/g/128/192')}">
-                            </div>
                             <div class="media-body">
                                 <h4>${fn:escapeXml(post.title)}</h4>
-                                <p>${fn:escapeXml(post.content)}</p>
                             </div>
                         </a>
                     </div>
@@ -99,5 +99,3 @@
                 </c:if>
             </c:otherwise>
         </c:choose>
-
-</div>
