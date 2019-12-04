@@ -10,12 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * delete post
+ */
 @WebServlet(name = "DeletePostServlet")
 public class DeletePostServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    /**
+     * delete post
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long postId=Long.decode(request.getParameter("postid"));
         PostDao postDao = (PostDao) this.getServletContext().getAttribute("postdao");

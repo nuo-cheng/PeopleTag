@@ -282,58 +282,114 @@ public class Post {
     this.imageUrl = imageUrl;
   }
 
+  /**
+   * get title
+   * @return
+   */
   public String getTitle() {
     return title;
   }
 
+  /**
+   * get content
+   * @return
+   */
   public String getContent() {
     return content;
   }
 
+  /**
+   * get url
+   * @return
+   */
   public String getUrl1() {
     return url1;
   }
 
+  /**
+   * set title
+   * @param title
+   */
   public void setTitle(String title) {
     this.title = title;
   }
 
+  /**
+   * get url2
+   * @return
+   */
   public String getUrl2() {
     return url2;
   }
 
+  /**
+   * get url3
+   * @return
+   */
   public String getUrl3() {
     return url3;
   }
 
+  /**
+   * set url2
+   * @param url2
+   */
   public void setUrl2(String url2) {
     this.url2 = url2;
   }
 
+  /**
+   * set url3
+   * @param url3
+   */
   public void setUrl3(String url3) {
     this.url3 = url3;
   }
 
+  /**
+   * set content
+   * @param content
+   */
   public void setContent(String content) {
     this.content = content;
   }
 
+  /**
+   * set url1
+   * @param url1
+   */
   public void setUrl1(String url1) {
     this.url1 = url1;
   }
 
+  /**
+   * get num of scores
+   * @return
+   */
   public Long getNumOfScores() {
     return numOfScores;
   }
 
+  /**
+   * set num of scores
+   * @param numOfScores
+   */
   public void setNumOfScores(Long numOfScores) {
     this.numOfScores = numOfScores;
   }
 
+  /**
+   * get average score
+   * @return
+   */
   public double getAverageScore() {
     return averageScore;
   }
 
+  /**
+   * set average score
+   * @param averageScore
+   */
   public void setAverageScore(double averageScore) {
     this.averageScore = averageScore;
   }

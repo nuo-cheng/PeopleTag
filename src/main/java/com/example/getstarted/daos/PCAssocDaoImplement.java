@@ -11,19 +11,35 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * implement pc assoc dao
+ */
 public class PCAssocDaoImplement implements PCAssocDao{
     private DatastoreService datastore;
     private static final String PCASSOC_KIND="pcAssoc";
 
+    /**
+     * generator
+     */
     public PCAssocDaoImplement(){
         datastore= DatastoreServiceFactory.getDatastoreService();
     }
 
+    /**
+     * entity to pc association
+     * @param entity
+     * @return
+     */
     public PostCollectionAssoc entityToPCAssoc(Entity entity){
         return new PostCollectionAssoc(entity.getKey().getId(),(Long)entity.getProperty(PostCollectionAssoc.COLLECTION_ID)
                 ,(Long)entity.getProperty(PostPersonAssoc.POST_ID));
     }
 
+    /**
+     * entities to pc associations
+     * @param results
+     * @return
+     */
     public List<PostCollectionAssoc> entitiesToPCAssocs(Iterator<Entity> results){
         List<PostCollectionAssoc> resultAssocs=new ArrayList<>();
         while (results.hasNext()) {  // We still have data
@@ -33,6 +49,13 @@ public class PCAssocDaoImplement implements PCAssocDao{
     }
 
 
+    /**
+     * create pc association by collection id and post id
+     * @param collectionId
+     * @param postId
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Long createPCAssoc(Long collectionId, Long postId) throws SQLException {
         Entity pCAssocEntity=new Entity(PCASSOC_KIND);
@@ -42,12 +65,24 @@ public class PCAssocDaoImplement implements PCAssocDao{
         return assocKey.getId();
     }
 
+    /**
+     * delete pc association
+     * @param pcAssocId
+     * @throws SQLException
+     */
     @Override
     public void deletePCAssoc(Long pcAssocId) throws SQLException {
         Key key= KeyFactory.createKey(PCASSOC_KIND,pcAssocId);
         datastore.delete(key);
     }
 
+    /**
+     * read collections
+     * @param postId
+     * @param startCursorString
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Result<Long> readCollections(Long postId, String startCursorString) throws SQLException {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -81,6 +116,13 @@ public class PCAssocDaoImplement implements PCAssocDao{
         }
     }
 
+    /**
+     * read posts
+     * @param collectionId
+     * @param startCursorString
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Result<Long> readPosts(Long collectionId, String startCursorString) throws SQLException {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -114,6 +156,12 @@ public class PCAssocDaoImplement implements PCAssocDao{
         }
     }
 
+    /**
+     * is already stored
+     * @param postId
+     * @param collectionId
+     * @return
+     */
     @Override
     public boolean isAlreadyIn(Long postId, Long collectionId) {
         Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
@@ -130,6 +178,12 @@ public class PCAssocDaoImplement implements PCAssocDao{
         }
     }
 
+    /**
+     * get association id
+     * @param collectionId
+     * @param postId
+     * @return
+     */
     @Override
     public Long getAssocId(Long collectionId, Long postId) {
         Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
@@ -148,6 +202,11 @@ public class PCAssocDaoImplement implements PCAssocDao{
         return entity.getKey().getId();
     }
 
+    /**
+     * get pc association ids from post id
+     * @param postId
+     * @return
+     */
     @Override
     public List<Long> getPCAssocIdsFromPostId(Long postId) {
         Query query=new Query(PCASSOC_KIND)
@@ -164,6 +223,11 @@ public class PCAssocDaoImplement implements PCAssocDao{
         return pcAssocIds;
     }
 
+    /**
+     * get pc association ids from collection id
+     * @param collectionId
+     * @return
+     */
     @Override
     public List<Long> getPCAssocIdsFromCollectionId(Long collectionId) {
         Query query=new Query(PCASSOC_KIND)

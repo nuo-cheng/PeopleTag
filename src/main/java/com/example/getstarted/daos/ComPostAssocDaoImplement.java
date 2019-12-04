@@ -10,14 +10,27 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * implement comment post association dao
+ */
 public class ComPostAssocDaoImplement implements ComPostAssocDao {
     private DatastoreService datastore;
     private static final String COMPOSTASSOCKIND="compostassoc";
 
+    /**
+     * constructor
+     */
     public ComPostAssocDaoImplement(){
         datastore= DatastoreServiceFactory.getDatastoreService();
     }
 
+    /**
+     * create comment post association
+     * @param commentId
+     * @param postId
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Long createComPostAssoc(Long commentId, Long postId) throws SQLException {
         Entity pCAssocEntity=new Entity(COMPOSTASSOCKIND);
@@ -29,6 +42,13 @@ public class ComPostAssocDaoImplement implements ComPostAssocDao {
     }
 
 
+    /**
+     * read comments
+     * @param postId
+     * @param startCursorString
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Result<Long> readComments(Long postId, String startCursorString) throws SQLException {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -63,11 +83,21 @@ public class ComPostAssocDaoImplement implements ComPostAssocDao {
     }
 
 
+    /**
+     * entity to comment post association
+     * @param entity
+     * @return
+     */
     public CommentPostAssoc entityToComPostAssoc(Entity entity){
         return new CommentPostAssoc(entity.getKey().getId(),(Long)entity.getProperty(CommentPostAssoc.COMMENTID)
                 ,(Long)entity.getProperty(CommentPostAssoc.POST_ID));
     }
 
+    /**
+     * entities to comment post associations
+     * @param results
+     * @return
+     */
     public List<CommentPostAssoc> entitiesToComPostAssocs(Iterator<Entity> results){
         List<CommentPostAssoc> resultAssocs=new ArrayList<>();
         while (results.hasNext()) {  // We still have data

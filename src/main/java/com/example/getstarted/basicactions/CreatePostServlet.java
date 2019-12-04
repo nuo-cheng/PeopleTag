@@ -15,9 +15,7 @@
 
 package com.example.getstarted.basicactions;
 
-import com.example.getstarted.daos.PersonDao;
 import com.example.getstarted.daos.PostDao;
-import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Post;
 import com.example.getstarted.util.CloudStorageHelper;
 import com.google.common.base.Strings;
@@ -39,12 +37,12 @@ import java.util.Map;
 // [START example]
 
 /**
- * create person
+ * create post
  */
 @SuppressWarnings("serial")
 public class CreatePostServlet extends HttpServlet {
 
-  // [START setup]
+  // go to post form
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
       IOException {
@@ -58,7 +56,7 @@ public class CreatePostServlet extends HttpServlet {
   // [START formpost]
 
   /**
-   * do post
+   * finish add post
    * @param req
    * @param resp
    * @throws ServletException

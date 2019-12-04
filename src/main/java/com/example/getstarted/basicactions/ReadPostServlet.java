@@ -12,12 +12,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * read post
+ */
 @WebServlet(name = "ReadPostServlet")
 public class ReadPostServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+
+    /**
+     * read post
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long postId=Long.decode(request.getParameter("postid"));
         PostDao postDao=new PostDaoImplement();

@@ -11,12 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * update score
+ */
 @WebServlet(name = "UpdateScoreServlet")
 public class UpdateScoreServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
 
+    /**
+     * update score
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long score=Long.decode(request.getParameter("score"));
         Long id=Long.decode(request.getParameter("postid"));

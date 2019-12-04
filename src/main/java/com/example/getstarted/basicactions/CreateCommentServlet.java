@@ -15,6 +15,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * create comment
+ */
 @WebServlet(name = "CreateCommentServlet")
 public class CreateCommentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,6 +48,13 @@ public class CreateCommentServlet extends HttpServlet {
         }
     }
 
+    /**
+     * go to comment form page
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long postId=Long.decode(request.getParameter("postid"));
         request.setAttribute("action","Create");

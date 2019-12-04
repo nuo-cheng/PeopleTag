@@ -6,13 +6,26 @@ import com.google.appengine.api.datastore.*;
 import java.sql.SQLException;
 import java.util.Date;
 
+/**
+ * implement comment dao
+ */
 public class CommentDaoImplement implements CommentDao {
     private DatastoreService datastore;
     private static final String COMMENTKIND = "comment";
 
+    /**
+     * constructor
+     */
     public CommentDaoImplement() {
         datastore = DatastoreServiceFactory.getDatastoreService(); // Lastized Datastore service
     }
+
+    /**
+     * create comment
+     * @param comment
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Long createComment(Comment comment) throws SQLException {
         Entity incPostEntity = new Entity(COMMENTKIND);
@@ -24,6 +37,12 @@ public class CommentDaoImplement implements CommentDao {
         return  commentKey.getId();
     }
 
+    /**
+     * readComment
+     * @param commentId
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Comment readComment(Long commentId) throws SQLException {
         try{
@@ -34,6 +53,11 @@ public class CommentDaoImplement implements CommentDao {
         }
     }
 
+    /**
+     * entity to comment
+     * @param entity
+     * @return
+     */
     public Comment entityToComment(Entity entity){
         return new Comment.Builder()
                 .content((String)entity.getProperty(Comment.CONTENT))

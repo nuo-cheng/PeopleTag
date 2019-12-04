@@ -16,9 +16,7 @@
 
 package com.example.getstarted.basicactions;
 
-import com.example.getstarted.daos.CollectionDao;
 import com.example.getstarted.daos.PostDao;
-import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Post;
 import com.example.getstarted.objects.Result;
 
@@ -30,7 +28,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * list collection by user
+ * list posts by user
  */
 @SuppressWarnings("serial")
 public class ListPostByUserServlet extends HttpServlet {

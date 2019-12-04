@@ -10,19 +10,35 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * implement pp association dao
+ */
 public class PPAssocDaoImplement implements PPAssocDao{
     private DatastoreService datastore;
     private static final String PPASSOC_KIND="ppAssoc";
 
+    /**
+     * generator
+     */
     public PPAssocDaoImplement(){
         datastore= DatastoreServiceFactory.getDatastoreService();
     }
 
+    /**
+     * entity to pp association
+     * @param entity
+     * @return
+     */
     public PostPersonAssoc entityToPPAssoc(Entity entity){
         return new PostPersonAssoc(entity.getKey().getId(),(Long)entity.getProperty(PostPersonAssoc.PERSON_ID)
                 ,(Long)entity.getProperty(PostPersonAssoc.POST_ID));
     }
 
+    /**
+     * entities to pp associations
+     * @param results
+     * @return
+     */
     public List<PostPersonAssoc> entitiesToPPAssocs(Iterator<Entity> results){
         List<PostPersonAssoc> resultAssocs=new ArrayList<>();
         while (results.hasNext()) {  // We still have data
@@ -31,6 +47,13 @@ public class PPAssocDaoImplement implements PPAssocDao{
         return resultAssocs;
     }
 
+    /**
+     * create pp association
+     * @param personId
+     * @param postId
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Long createPPAssoc(Long personId, Long postId) throws SQLException {
         Entity pPAssocEntity=new Entity(PPASSOC_KIND);
@@ -40,12 +63,24 @@ public class PPAssocDaoImplement implements PPAssocDao{
         return assocKey.getId();
     }
 
+    /**
+     * delete pp associations
+     * @param ppAssocId
+     * @throws SQLException
+     */
     @Override
     public void deletePPAssoc(Long ppAssocId) throws SQLException {
         Key key= KeyFactory.createKey(PPASSOC_KIND,ppAssocId);
         datastore.delete(key);
     }
 
+    /**
+     * read persons
+     * @param postId
+     * @param startCursorString
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Result<Long> readPersons(Long postId, String startCursorString) throws SQLException {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -79,6 +114,13 @@ public class PPAssocDaoImplement implements PPAssocDao{
         }
     }
 
+    /**
+     * read posts
+     * @param personId
+     * @param startCursorString
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Result<Long> readPosts(Long personId, String startCursorString) throws SQLException {
         FetchOptions fetchOptions = FetchOptions.Builder.withLimit(9); // Only show 10 at a time
@@ -112,6 +154,12 @@ public class PPAssocDaoImplement implements PPAssocDao{
         }
     }
 
+    /**
+     * is already stored
+     * @param postId
+     * @param personId
+     * @return
+     */
     @Override
     public boolean isAlreadyIn(Long postId, Long personId) {
         Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
@@ -128,6 +176,12 @@ public class PPAssocDaoImplement implements PPAssocDao{
         }
     }
 
+    /**
+     * get association id
+     * @param personId
+     * @param postId
+     * @return
+     */
     @Override
     public Long getAssocId(Long personId, Long postId) {
         Query.CompositeFilter advancedFilter = new Query.CompositeFilter(
@@ -146,6 +200,11 @@ public class PPAssocDaoImplement implements PPAssocDao{
         return entity.getKey().getId();
     }
 
+    /**
+     * get pp association ids form post id
+     * @param postId
+     * @return
+     */
     @Override
     public List<Long> getPPAssocIdsFromPostId(Long postId) {
         Query query=new Query(PPASSOC_KIND)
@@ -162,6 +221,11 @@ public class PPAssocDaoImplement implements PPAssocDao{
         return ppAssocIds;
     }
 
+    /**
+     * get pp association ids from person id
+     * @param personId
+     * @return
+     */
     @Override
     public List<Long> getPPAssocIdsFromPersonId(Long personId) {
         Query query=new Query(PPASSOC_KIND)

@@ -2,8 +2,6 @@ package com.example.getstarted.basicactions;
 
 import com.example.getstarted.daos.PCAssocDao;
 import com.example.getstarted.daos.PCAssocDaoImplement;
-import com.example.getstarted.daos.PPAssocDao;
-import com.example.getstarted.daos.PPAssocDaoImplement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * delete collection
+ */
 @WebServlet(name = "DeleteCollectionTagServlet")
 public class DeleteCollectionTagServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    /**
+     * delete collection tag
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long collectionId=Long.decode(request.getParameter("collectionid"));
         Long postId=Long.decode(request.getParameter("postid"));

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * add collection tag
+ */
 @WebServlet(name = "AddCollectionTagServlet")
 public class AddCollectionTagServlet extends HttpServlet {
     /**
@@ -42,6 +45,13 @@ public class AddCollectionTagServlet extends HttpServlet {
         }
     }
 
+    /**
+     * do get
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long postId=Long.decode(request.getParameter("postid"));
         CollectionDao collectionDao=(CollectionDaoImplement)this.getServletContext().getAttribute("collectiondao");

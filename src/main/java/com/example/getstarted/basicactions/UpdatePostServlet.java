@@ -15,9 +15,7 @@
 
 package com.example.getstarted.basicactions;
 
-import com.example.getstarted.daos.PersonDao;
 import com.example.getstarted.daos.PostDao;
-import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Post;
 import com.example.getstarted.util.CloudStorageHelper;
 import com.google.common.base.Strings;
@@ -36,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * update person
+ * update post
  */
 @SuppressWarnings("serial")
 public class UpdatePostServlet extends HttpServlet {

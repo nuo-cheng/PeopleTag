@@ -10,12 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * delete person tag
+ */
 @WebServlet(name = "DeletePersonTagServlet")
 public class DeletePersonTagServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    /**
+     * delete person tag
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long personId=Long.decode(request.getParameter("personid"));
         Long postId=Long.decode(request.getParameter("postid"));

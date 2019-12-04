@@ -3,7 +3,6 @@ package com.example.getstarted.basicactions;
 import com.example.getstarted.daos.DatastoreDao;
 import com.example.getstarted.daos.PPAssocDao;
 import com.example.getstarted.daos.PPAssocDaoImplement;
-import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Result;
 
@@ -15,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * add person tag
+ */
 @WebServlet(name = "AddPersonTagServlet")
 public class AddPersonTagServlet extends HttpServlet {
     /**
@@ -45,6 +47,13 @@ public class AddPersonTagServlet extends HttpServlet {
         }
     }
 
+    /**
+     * go to add person tag page
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long postId=Long.decode(request.getParameter("postid"));
         DatastoreDao dao=(DatastoreDao) this.getServletContext().getAttribute("dao");
