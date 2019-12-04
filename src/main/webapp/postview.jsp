@@ -27,35 +27,47 @@
     <br/>
     <br/>
 
-    <div class="w3-container w3-pale-red">
+    <div class="w3-card-2" style="width:100%;">
+            <header class="w3-container w3-pale-red">
             <h1 class="post-title">
                 ${fn:escapeXml(post.title)}
-            </h1>
-    </div>
-    <div class="w3-border w3-border-pale-red">
-    <h5 class="post-content">${fn:escapeXml(not empty post.content?post.content:'No Content')}</h5>
-    </div>
-    <div class="w3-container w3-pale-red">
-                <small class="post-added-by w3-right">Added by
-                    ${fn:escapeXml(not empty post.createdBy?post.createdBy:'Anonymous')}</small>
+            </header>
+            <div class="w3-container">
+            <h5 class="post-content">${fn:escapeXml(not empty post.content?post.content:'No Content')}</h5>
+            </div>
+            <footer class="w3-container w3-pale-red">
+                        <small class="post-added-by w3-right">Added by
+                            ${fn:escapeXml(not empty post.createdBy?post.createdBy:'Anonymous')}</small>
+            </footer>
     </div>
     <br/>
+    <div class="w3-card-2" style="width:100%">
+    <header class="w3-container w3-pale-red">
     <h5>Related Links:</h5>
-    <div class="w3-container w3-pale-red">
+    </header>
+    <div class="w3-container">
             <a href="https://${post.url1}">${post.url1}</a><br/>
             <a href="https://${post.url2}">${post.url2}</a><br/>
             <a href="https://${post.url3}">${post.url3}</a><br/>
     </div>
+    </div>
     <br/>
-    <div class="w3-container">
-    <div class="w3-row">
+
+    <div class="w3-cell-row">
+
+    <div class="w3-container w3-cell">
+
+    <div class="w3-card-2" style="width:87%;">
+    <header class="w3-container w3-pale-red">
     <h5>Collection Tags</h5>
+    </header>
+    <div class="w3-container">
     <c:choose>
         <c:when test="${empty collectiontags}">
             <p>No collectiontags found</p>
         </c:when>
         <c:otherwise>
-          <ul class="w3-ul w3-card-2 w3-col s6">
+          <ul class="w3-ul w3-card-2 w3-col s12">
             <c:forEach items="${collectiontags}" var="collection">
                 <li class="w3-display-container">
                     <a href="/readcollection?collectionid=${collection.id}">
@@ -71,13 +83,23 @@
           </ul>
         </c:otherwise>
     </c:choose>
+    </div>
+    </div>
+    </div>
+
+    <div class="w3-container w3-cell">
+
+    <div class="w3-card-2" style="width:100%;">
+    <header class="w3-container w3-pale-red">
     <h5>Person Tags</h5>
+    </header>
+    <div class="w3-container">
     <c:choose>
         <c:when test="${empty persontags}">
             <p>No persontags found</p>
         </c:when>
         <c:otherwise>
-          <ul class="w3-ul w3-card-2 w3-col s6">
+          <ul class="w3-ul w3-card-2 w3-col s12">
             <c:forEach items="${persontags}" var="person">
                 <li class="w3-display-container">
                     <a href="/read?id=${person.id}">
@@ -95,6 +117,12 @@
     </c:choose>
     </div>
     </div>
+
+    </div>
+
+    </div>
+
+    <br/>
     <h4>Number of scores: ${post.numOfScores}</h4>
     <h4>Average Score: ${post.averageScore}</h3>
     <form action="/updatescore?postid=${post.id}" method="post">
