@@ -45,7 +45,12 @@ Copyright 2016 Google Inc.
 
     <div class="form-group">
           <label for="content">Content</label>
-          <input type="text" name="content" id="content" value="${post.content}" class="form-control" />
+          <textarea cols="10" rows="6" name="content" id="content" value="${post.content}" class="form-control" >
+          </textarea>
+
+
+<!--          <input type="text" name="content" id="content" value="${post.content}" class="form-control" />
+-->
     </div>
 
     <div class="form-group ${isCloudStorageConfigured ? '' : 'hidden'}">

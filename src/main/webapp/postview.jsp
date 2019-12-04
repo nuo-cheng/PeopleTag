@@ -1,5 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>{
+
+</style>
 <div class="container">
     <h3>Post</h3>
     <div class="btn-group">
@@ -20,58 +24,79 @@
             Add collection tag
         </a>
     </div>
+    <br/>
+    <br/>
 
-    <div class="media">
-        <div class="media-body">
-            <h4 class="post-title">
+    <div class="w3-container w3-pale-red">
+            <h1 class="post-title">
                 ${fn:escapeXml(post.title)}
-            </h4>
+            </h1>
+    </div>
+    <div class="w3-border w3-border-pale-red">
+    <h5 class="post-content">${fn:escapeXml(not empty post.content?post.content:'No Content')}</h5>
+    </div>
+    <div class="w3-container w3-pale-red">
+                <small class="post-added-by w3-right">Added by
+                    ${fn:escapeXml(not empty post.createdBy?post.createdBy:'Anonymous')}</small>
+    </div>
+    <br/>
+    <h5>Related Links:</h5>
+    <div class="w3-container w3-pale-red">
             <a href="https://${post.url1}">${post.url1}</a><br/>
             <a href="https://${post.url2}">${post.url2}</a><br/>
             <a href="https://${post.url3}">${post.url3}</a><br/>
-            <h5 class="post-content">${fn:escapeXml(not empty post.content?post.content:'No Content')}</h5>
-            <small class="post-added-by">Added by
-                ${fn:escapeXml(not empty post.createdBy?post.createdBy:'Anonymous')}</small>
-        </div>
     </div>
-    <h3>Collection Tags</h3>
+    <br/>
+    <div class="w3-container">
+    <div class="w3-row">
+    <h5>Collection Tags</h5>
     <c:choose>
         <c:when test="${empty collectiontags}">
             <p>No collectiontags found</p>
         </c:when>
         <c:otherwise>
+          <ul class="w3-ul w3-card-2 w3-col s6">
             <c:forEach items="${collectiontags}" var="collection">
-                <div class="media">
+                <li class="w3-display-container">
                     <a href="/readcollection?collectionid=${collection.id}">
-                        <h4>${collection.collectionName}</h4>
+                        <p>${collection.collectionName}</p>
                     </a>
+                    <span class="w3-button w3-transparent w3-display-right">
                     <a href="/deletecollectiontag?collectionid=${collection.id}&postid=${post.id}">
-                        <h4>delete tag</h4>
+                        x
                     </a>
-                </div>
+                    </span>
+                </li>
             </c:forEach>
+          </ul>
         </c:otherwise>
     </c:choose>
-    <h3>Person Tags</h3>
+    <h5>Person Tags</h5>
     <c:choose>
         <c:when test="${empty persontags}">
             <p>No persontags found</p>
         </c:when>
         <c:otherwise>
+          <ul class="w3-ul w3-card-2 w3-col s6">
             <c:forEach items="${persontags}" var="person">
-                <div class="media">
+                <li class="w3-display-container">
                     <a href="/read?id=${person.id}">
-                        <h4>${person.first} ${person.last}</h4>
+                        <p>${person.first} ${person.last}</p>
                     </a>
+                    <span class="w3-button w3-transparent w3-display-right">
                     <a href="/deletepersontag?personid=${person.id}&postid=${post.id}">
-                        <h4>delete tag</h4>
+                        x
                     </a>
-                </div>
+                    </span>
+                </li>
             </c:forEach>
+          </ul>
         </c:otherwise>
     </c:choose>
+    </div>
+    </div>
     <h4>Number of scores: ${post.numOfScores}</h4>
-    <h3>Average Score: ${post.averageScore}</h3>
+    <h4>Average Score: ${post.averageScore}</h3>
     <form action="/updatescore?postid=${post.id}" method="post">
         <select id="score" name="score">
             <option>0</option>
