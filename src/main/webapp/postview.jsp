@@ -124,7 +124,7 @@
 
     <br/>
     <h4>Number of scores: ${post.numOfScores}</h4>
-    <h4>Average Score: ${post.averageScore}</h3>
+    <h3>Average Score: ${post.averageScore}</h3>
     <form action="/updatescore?postid=${post.id}" method="post">
         <select id="score" name="score">
             <option>0</option>

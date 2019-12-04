@@ -122,6 +122,40 @@ Copyright 2016 Google Inc.
                                 <h4>${post.title}</h4>
                             </div>
                         </a>
+                        <h5>person tag</h5>
+                        <c:choose>
+                            <c:when test="${empty persontagmap[post.id]}">
+                                <p>No persontags found</p>
+                            </c:when>
+                            <c:otherwise>
+                                <ul class="w3-ul w3-card-2 w3-col s12">
+                                    <c:forEach items="${persontagmap[post.id]}" var="persontag">
+                                        <li class="w3-display-container">
+                                            <a href="/read?id=${persontag.id}">
+                                                <p>${persontag.first} ${persontag.last}</p>
+                                            </a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </c:otherwise>
+                        </c:choose>
+                        <h5>collection tag</h5>
+                        <c:choose>
+                            <c:when test="${empty collectiontagmap[post.id]}">
+                                <p>No collectiontags found</p>
+                            </c:when>
+                            <c:otherwise>
+                                <ul class="w3-ul w3-card-2 w3-col s12">
+                                    <c:forEach items="${collectiontagmap[post.id]}" var="collectiontag">
+                                        <li class="w3-display-container">
+                                            <a href="/readcollection?collectionid=${collectiontag.id}">
+                                                <p>${collectiontag.collectionName}</p>
+                                            </a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </c:forEach>
                 <c:if test="${not empty postcursor}">

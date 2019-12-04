@@ -21,14 +21,15 @@ import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Post;
 import com.example.getstarted.objects.Result;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * read person
@@ -54,12 +55,15 @@ public class ReadPersonServlet extends HttpServlet {
     CollectionDao collectionDao=(CollectionDao) this.getServletContext().getAttribute("collectiondao");
     PostDao postDao = (PostDao) this.getServletContext().getAttribute("postdao");
     PPAssocDao ppAssocDao=new PPAssocDaoImplement();
+    PCAssocDao pcAssocDao=new PCAssocDaoImplement();
     List<Collection> collections=new ArrayList<>();
     List<Long> collectionIds;
     List<Long> postIds;
     List<Post> posts = new ArrayList<>();
     String endCursor;
     String postEndCursor;
+    Map<Long,List> personTagmap=new HashMap<>();
+    Map<Long,List> collectionTagmap=new HashMap<>();
     try {
       Person person = dao.readPerson(id);
       Result<Long> collectionIdsAndCursor=assocDao.readCollections(id,startCursor);
@@ -77,6 +81,22 @@ public class ReadPersonServlet extends HttpServlet {
       for (int i = 0; i < postIds.size(); i++){
         Long postId = postIds.get(i);
         Post post = postDao.readPost(postId);
+        Result<Long> personTagIdsAndCursor=ppAssocDao.readPersons(postId,null);
+        List<Long> personTagIds=personTagIdsAndCursor.result;
+        List<Person> personTags=new ArrayList<>();
+        for(int j=0;j<personTagIds.size();j++){
+          Person personTag=dao.readPerson(personTagIds.get(j));
+          personTags.add(personTag);
+        }
+        Result<Long> collectionTagIdsAndCursor=pcAssocDao.readCollections(postId,null);
+        List<Long> collectionTagIds=collectionTagIdsAndCursor.result;
+        List<Collection> collectionTags=new ArrayList<>();
+        for(int j=0;j<collectionTagIds.size();j++){
+          Collection collectionTag=collectionDao.readCollection(collectionTagIds.get(j));
+          collectionTags.add(collectionTag);
+        }
+        collectionTagmap.put(postId,collectionTags);
+        personTagmap.put(postId,personTags);
         posts.add(post);
       }
 
@@ -84,6 +104,8 @@ public class ReadPersonServlet extends HttpServlet {
       req.setAttribute("page", "view");
       req.getSession().getServletContext().setAttribute("collectionsofperson",collections);
       req.getSession().getServletContext().setAttribute("postsofperson", posts);
+      req.getSession().getServletContext().setAttribute("persontagmap", personTagmap);
+      req.getSession().getServletContext().setAttribute("collectiontagmap", collectionTagmap);
       req.setAttribute("cursor",endCursor);
       req.setAttribute("postcursor", postEndCursor);
       req.getRequestDispatcher("/base.jsp").forward(req, resp);
