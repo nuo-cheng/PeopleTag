@@ -1,12 +1,10 @@
 package com.example.getstarted.daos;
 
 import com.example.getstarted.objects.Assoc;
-import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Result;
 import com.google.appengine.api.datastore.*;
 
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -18,7 +16,7 @@ import java.util.List;
  */
 public class AssocDaoImplement implements AssocDao{
     private DatastoreService datastore;
-    private static final String ASSOC_KIND="ASSOC";
+    private static final String ASSOC_KIND="assoc";
 
     /**
      * entity To Assoc

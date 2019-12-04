@@ -1,6 +1,5 @@
 package com.example.getstarted.daos;
 
-import com.example.getstarted.objects.Assoc;
 import com.example.getstarted.objects.PostCollectionAssoc;
 import com.example.getstarted.objects.PostPersonAssoc;
 import com.example.getstarted.objects.Result;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class PCAssocDaoImplement implements PCAssocDao{
     private DatastoreService datastore;
-    private static final String PCASSOC_KIND="PCASSOC";
+    private static final String PCASSOC_KIND="pcAssoc";
 
     public PCAssocDaoImplement(){
         datastore= DatastoreServiceFactory.getDatastoreService();

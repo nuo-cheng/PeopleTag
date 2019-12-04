@@ -1,7 +1,5 @@
 package com.example.getstarted.daos;
 
-import com.example.getstarted.objects.Assoc;
-import com.example.getstarted.objects.PostCollectionAssoc;
 import com.example.getstarted.objects.PostPersonAssoc;
 import com.example.getstarted.objects.Result;
 import com.google.appengine.api.datastore.*;
@@ -14,7 +12,7 @@ import java.util.List;
 
 public class PPAssocDaoImplement implements PPAssocDao{
     private DatastoreService datastore;
-    private static final String PPASSOC_KIND="PPASSOC";
+    private static final String PPASSOC_KIND="ppAssoc";
 
     public PPAssocDaoImplement(){
         datastore= DatastoreServiceFactory.getDatastoreService();

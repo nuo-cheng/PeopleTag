@@ -23,7 +23,7 @@
         <c:if test="${not empty cursor}">
             <nav>
                 <ul class="pager">
-                    <li><a href="?cursor=${cursor}&id=${collectionidtoadd}">More</a></li>
+                    <li><a href="?cursor=${cursor}&collectionid=${collectionidtoadd}">More</a></li>
                 </ul>
             </nav>
         </c:if>
