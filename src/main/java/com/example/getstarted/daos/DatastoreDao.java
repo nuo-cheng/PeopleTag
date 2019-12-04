@@ -72,6 +72,10 @@ public class DatastoreDao implements PersonDao {
         .gender((String) entity.getProperty(Person.GENDER))
         .jobTitle((String) entity.getProperty(Person.JOB_TITLE))
         .interest((String) entity.getProperty(Person.INTEREST))
+        .linkedIn((String) entity.getProperty(Person.LINKEDIN))
+        .facebook((String) entity.getProperty(Person.FACEBOOK))
+        .twitter((String) entity.getProperty(Person.TWITTER))
+        .instagram((String) entity.getProperty(Person.INSTAGRAM))
         .build();
   }
 
@@ -93,6 +97,10 @@ public class DatastoreDao implements PersonDao {
     incPersonEntity.setProperty(Person.GENDER, person.getGender());
     incPersonEntity.setProperty(Person.JOB_TITLE, person.getJobTitle());
     incPersonEntity.setProperty(Person.INTEREST, person.getInterest());
+    incPersonEntity.setProperty(Person.LINKEDIN, person.getLinkedIn());
+    incPersonEntity.setProperty(Person.FACEBOOK, person.getFacebook());
+    incPersonEntity.setProperty(Person.TWITTER, person.getTwitter());
+    incPersonEntity.setProperty(Person.INSTAGRAM, person.getInstagram());
 
     Key personKey = datastore.put(incPersonEntity); // Save the Entity
     return personKey.getId();                     // The ID of the Key
@@ -132,6 +140,10 @@ public class DatastoreDao implements PersonDao {
     entity.setProperty(Person.GENDER, person.getGender());
     entity.setProperty(Person.JOB_TITLE, person.getJobTitle());
     entity.setProperty(Person.INTEREST, person.getInterest());
+    entity.setProperty(Person.LINKEDIN, person.getLinkedIn());
+    entity.setProperty(Person.FACEBOOK, person.getFacebook());
+    entity.setProperty(Person.TWITTER, person.getTwitter());
+    entity.setProperty(Person.INSTAGRAM, person.getInstagram());
 
     datastore.put(entity);                   // Update the Entity
   }

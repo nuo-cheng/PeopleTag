@@ -27,7 +27,7 @@
     <h3>${collection.collectionName}</h3>
     <h4>${collection.description}</h4>
     <div class="btn-group">
-        <a href="/updatecollection?id=${collection.id}" class="btn btn-primary btn-sm">
+        <a href="/addtocollectionfromcollection?collectionid=${collection.id}" class="btn btn-primary btn-sm">
             <i class="glyphicon glyphicon-edit"></i>
             Add person
         </a>
@@ -37,7 +37,7 @@
         </a>
         <a href="/movefromcollection?id=${collection.id}" class="btn btn-danger btn-sm">
             <i class="glyphicon glyphicon-trash"></i>
-            Move person from collection
+            Remove person from collection
         </a>
     </div>
 
