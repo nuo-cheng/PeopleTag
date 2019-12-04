@@ -2,23 +2,20 @@
 package com.example.getstarted.basicactions;
 
 import com.example.getstarted.daos.*;
-
 import com.example.getstarted.objects.Collection;
 import com.example.getstarted.objects.Person;
 import com.example.getstarted.objects.Post;
 import com.example.getstarted.objects.Result;
 
 import javax.servlet.ServletException;
-
-import javax.servlet.annotation.WebServlet;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * read collection
@@ -40,6 +37,7 @@ public class ReadCollectionServlet extends HttpServlet {
         DatastoreDao dao=(DatastoreDao) this.getServletContext().getAttribute("dao");
         CollectionDao collectionDao=(CollectionDao) this.getServletContext().getAttribute("collectiondao");
         PCAssocDao pcAssocDao=new PCAssocDaoImplement();
+        PPAssocDao ppAssocDao=new PPAssocDaoImplement();
         PostDao postDao=new PostDaoImplement();
         Collection collection;
         List<Long> personIds;
@@ -48,6 +46,8 @@ public class ReadCollectionServlet extends HttpServlet {
         List<Post> posts=new ArrayList<>();
         String endCursor = null;
         String postEndCursor;
+        Map<Long,List> personTagmap=new HashMap<>();
+        Map<Long,List> collectionTagmap=new HashMap<>();
         try{
             collection=collectionDao.readCollection(collectionId);
             Result<Long> personIdsAndCursor=assocDao.readPersons(collectionId,startCursor);
@@ -62,9 +62,26 @@ public class ReadCollectionServlet extends HttpServlet {
             postIds=postIdsAndCursor.result;
             postEndCursor=postIdsAndCursor.cursor;
             for(int i=0;i<postIds.size();i++){
-                Long id=postIds.get(i);
-                System.out.println(id);
-                Post post=postDao.readPost(id);
+                Long postId=postIds.get(i);
+                System.out.println(postId);
+                Post post=postDao.readPost(postId);
+                Result<Long> personTagIdsAndCursor=ppAssocDao.readPersons(postId,null);
+                List<Long> personTagIds=personTagIdsAndCursor.result;
+                List<Person> personTags=new ArrayList<>();
+                for(int j=0;j<personTagIds.size();j++){
+                    Person personTag=dao.readPerson(personTagIds.get(j));
+                    personTags.add(personTag);
+                }
+                Result<Long> collectionTagIdsAndCursor=pcAssocDao.readCollections(postId,null);
+                List<Long> collectionTagIds=collectionTagIdsAndCursor.result;
+                List<Collection> collectionTags=new ArrayList<>();
+                for(int j=0;j<collectionTagIds.size();j++){
+                    Collection collectionTag=collectionDao.readCollection(collectionTagIds.get(j));
+                    collectionTags.add(collectionTag);
+                }
+                collectionTagmap.put(postId,collectionTags);
+                personTagmap.put(postId,personTags);
+
                 posts.add(post);
             }
 
@@ -74,6 +91,8 @@ public class ReadCollectionServlet extends HttpServlet {
         request.setAttribute("collection",collection);
         request.getSession().getServletContext().setAttribute("persons", persons);
         request.getSession().getServletContext().setAttribute("posts", posts);
+        request.getSession().getServletContext().setAttribute("persontagmap", personTagmap);
+        request.getSession().getServletContext().setAttribute("collectiontagmap", collectionTagmap);
         request.setAttribute("cursor", endCursor);
         request.setAttribute("postcursor",postEndCursor);
         request.getSession().setAttribute("page", "collectionview");
