@@ -17,6 +17,7 @@ limitations under the License.
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html lang="en">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
     <title>Personshelf - Java on Google Cloud Platform</title>
     <meta charset="utf-8">
@@ -27,7 +28,7 @@ limitations under the License.
 <div class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <div class="navbar-brand">Personshelf</div>
+            <div class="navbar-brand">PersonTag</div>
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/">Persons</a></li>
