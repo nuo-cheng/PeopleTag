@@ -313,6 +313,14 @@
         <url-pattern>/updatescore</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>createcomment</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.CreateCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createcomment</servlet-name>
+        <url-pattern>/createcomment</url-pattern>
+    </servlet-mapping>
     <!-- [START config] -->
     <context-param>
         <param-name>personshelf.storageType</param-name>

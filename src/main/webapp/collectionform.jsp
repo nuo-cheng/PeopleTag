@@ -1,3 +1,4 @@
+<jsp:useBean id="person" scope="request" type="com.gargoylesoftware.htmlunit.html.DomElement"/>
 <!--
 Copyright 2016 Google Inc.
 

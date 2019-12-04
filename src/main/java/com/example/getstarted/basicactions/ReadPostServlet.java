@@ -1,10 +1,7 @@
 package com.example.getstarted.basicactions;
 
 import com.example.getstarted.daos.*;
-import com.example.getstarted.objects.Collection;
-import com.example.getstarted.objects.Person;
-import com.example.getstarted.objects.Post;
-import com.example.getstarted.objects.Result;
+import com.example.getstarted.objects.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,10 +25,14 @@ public class ReadPostServlet extends HttpServlet {
         PersonDao personDao=new DatastoreDao();
         PPAssocDao ppAssocDao=new PPAssocDaoImplement();
         PCAssocDao pcAssocDao=new PCAssocDaoImplement();
+        ComPostAssocDao comPostAssocDao=new ComPostAssocDaoImplement();
+        CommentDao commentDao=new CommentDaoImplement();
         List<Collection> collections=new ArrayList<>();
         List<Long> collectionIds;
         List<Person> persons=new ArrayList<>();
         List<Long> personIds;
+        List<Long> commentIds;
+        List<Comment> comments=new ArrayList<>();
         try {
             Post post=postDao.readPost(postId);
             Result<Long> personIdsAndCursor=ppAssocDao.readPersons(postId,null);
@@ -48,9 +49,17 @@ public class ReadPostServlet extends HttpServlet {
                 Collection collection = collectionDao.readCollection(collectionId);
                 collections.add(collection);
             }
+            Result<Long> commentIdsAndCursor=comPostAssocDao.readComments(postId,null);
+            commentIds=commentIdsAndCursor.result;
+            for(int i=0;i<commentIds.size();i++) {
+                Long commentId = commentIds.get(i);
+                Comment comment  = commentDao.readComment(commentId);
+                comments.add(comment);
+            }
             request.setAttribute("post",post);
             request.getSession().getServletContext().setAttribute("persontags",persons);
             request.getSession().getServletContext().setAttribute("collectiontags",collections);
+            request.getSession().getServletContext().setAttribute("comments",comments);
             request.setAttribute("page","postview");
             request.getRequestDispatcher("/base.jsp").forward(request,response);
         }catch (Exception e){

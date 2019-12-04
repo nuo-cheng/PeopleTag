@@ -88,4 +88,19 @@
         </select>
         <button type="submit" class="btn btn-success">Score</button>
     </form>
+    <a href="/createcomment?postid=${post.id}">new comment</a>
+    <c:choose>
+        <c:when test="${empty comments}">
+            <p>No comments found</p>
+        </c:when>
+        <c:otherwise>
+            <c:forEach items="${comments}" var="comment">
+                <div class="media">
+                    <h4>${comment.createdBy} </h4>
+                    <h4> ${comment.content}</h4>
+                </div>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
+
 </div>
