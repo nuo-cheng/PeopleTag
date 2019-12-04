@@ -49,6 +49,26 @@ Copyright 2016 Google Inc.
     </div>
 
     <div class="form-group">
+          <label for="linkedIn">LinkedIn</label>
+          <input type="text" name="linkedIn" id="linkedIn" value="${fn:escapeXml(person.linkedIn)}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+          <label for="facebook">Facebook</label>
+          <input type="text" name="facebook" id="facebook" value="${fn:escapeXml(person.facebook)}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+          <label for="twitter">Twitter</label>
+          <input type="text" name="twitter" id="twitter" value="${fn:escapeXml(person.twitter)}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+          <label for="instagram">Interest</label>
+          <input type="text" name="instagram" id="instagram" value="${fn:escapeXml(person.instagram)}" class="form-control" />
+    </div>
+
+    <div class="form-group">
       <label for="description">Description</label>
       <textarea name="description" id="description" class="form-control">${fn:escapeXml(person.description)}</textarea>
     </div>

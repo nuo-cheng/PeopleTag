@@ -111,6 +111,10 @@ public class UpdatePersonServlet extends HttpServlet {
           .gender(params.get("gender"))
           .jobTitle(params.get("jobTitle"))
           .interest(params.get("interest"))
+          .linkedIn(params.get("linkedIn"))
+          .facebook(params.get("facebook"))
+          .twitter(params.get("twitter"))
+          .instagram(params.get("instagram"))
           .build();
       // [END personBuilder]
 

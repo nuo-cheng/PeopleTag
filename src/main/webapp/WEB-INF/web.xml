@@ -312,6 +312,24 @@
         <servlet-name>updatescore</servlet-name>
         <url-pattern>/updatescore</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addtocollectionfromcollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.AddToCollectionFromCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addtocollectionfromcollection</servlet-name>
+        <url-pattern>/addtocollectionfromcollection</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>finishaddtocollectionfromcollection</servlet-name>
+        <servlet-class>com.example.getstarted.basicactions.FinishAddToCollectionFromCollectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>finishaddtocollectionfromcollection</servlet-name>
+        <url-pattern>/finishaddtocollectionfromcollection</url-pattern>
+    </servlet-mapping>
     
     <servlet>
         <servlet-name>createcomment</servlet-name>

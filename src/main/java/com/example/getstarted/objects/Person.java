@@ -38,6 +38,11 @@ public class Person {
   private Long id;
   private String imageUrl;
 
+  private String linkedIn;
+  private String facebook;
+  private String twitter;
+  private String instagram;
+
   /**
    * static keys
    */
@@ -53,6 +58,11 @@ public class Person {
   public static final String GENDER = "gender";
   public static final String JOB_TITLE = "jobTitle";
   public static final String INTEREST ="interest";
+
+  public static final String LINKEDIN = "linkedIn";
+  public static final String FACEBOOK = "facebook";
+  public static final String TWITTER = "twitter";
+  public static final String INSTAGRAM = "instagram";
 
 
   // [START constructor]
@@ -76,6 +86,11 @@ public class Person {
     this.jobTitle = builder.jobTitle;
     this.interest = builder.interest;
 
+    this.linkedIn = builder.linkedIn;
+    this.facebook = builder.facebook;
+    this.twitter = builder.twitter;
+    this.instagram = builder.instagram;
+
   }
 
   /**
@@ -93,6 +108,10 @@ public class Person {
     private String gender;
     private String jobTitle;
     private String interest;
+    private String linkedIn;
+    private String facebook;
+    private String twitter;
+    private String instagram;
 
     /**
      * build first name
@@ -191,6 +210,46 @@ public class Person {
      */
     public Builder interest(String interest) {
       this.interest = interest;
+      return this;
+    }
+
+    /**
+     * build interest
+     * @param linkedIn
+     * @return
+     */
+    public Builder linkedIn(String linkedIn) {
+      this.linkedIn = linkedIn;
+      return this;
+    }
+
+    /**
+     * build interest
+     * @param facebook
+     * @return
+     */
+    public Builder facebook(String facebook) {
+      this.facebook = facebook;
+      return this;
+    }
+
+    /**
+     * build interest
+     * @param twitter
+     * @return
+     */
+    public Builder twitter(String twitter) {
+      this.twitter = twitter;
+      return this;
+    }
+
+    /**
+     * build interest
+     * @param instagram
+     * @return
+     */
+    public Builder instagram(String instagram) {
+      this.instagram = instagram;
       return this;
     }
 
@@ -361,6 +420,38 @@ public class Person {
    */
   public void setInterest(String interest) {
     this.interest = interest;
+  }
+
+  public String getLinkedIn() {
+    return linkedIn;
+  }
+
+  public String getFacebook() {
+    return facebook;
+  }
+
+  public String getTwitter() {
+    return twitter;
+  }
+
+  public String getInstagram() {
+    return instagram;
+  }
+
+  public void setLinkedIn(String linkedIn) {
+    this.linkedIn = linkedIn;
+  }
+
+  public void setFacebook(String facebook) {
+    this.facebook = facebook;
+  }
+
+  public void setTwitter(String twitter) {
+    this.twitter = twitter;
+  }
+
+  public void setInstagram(String instagram) {
+    this.instagram = instagram;
   }
 
   // [END builder]

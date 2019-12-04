@@ -50,6 +50,40 @@ Copyright 2016 Google Inc.
         ${fn:escapeXml(not empty person.createdBy?person.createdBy:'Anonymous')}</small>
     </div>
   </div>
+
+    <h3>Social Media Link of ${fn:escapeXml(person.first)} </h3>
+    <c:choose>
+        <c:when test="${empty person.linkedIn}">
+            <p>No LinkedIn Link</p>
+        </c:when>
+        <c:otherwise>
+            <p class="person-linkedIn"><a href="https://${fn:escapeXml(person.linkedIn)}">LinkedIn</a></p>
+        </c:otherwise>
+    </c:choose>
+    <c:choose>
+        <c:when test="${empty person.facebook}">
+            <p>No Facebook Link</p>
+        </c:when>
+        <c:otherwise>
+            <p class="person-facebook"><a href="https://${fn:escapeXml(person.facebook)}">Facebook</a></p>
+        </c:otherwise>
+    </c:choose>
+    <c:choose>
+        <c:when test="${empty person.twitter}">
+            <p>No Twitter Link</p>
+        </c:when>
+        <c:otherwise>
+            <p class="person-twitter"><a href="https://${fn:escapeXml(person.twitter)}">Twitter</a></p>
+        </c:otherwise>
+    </c:choose>
+    <c:choose>
+        <c:when test="${empty person.instagram}">
+            <p>No Instagram Link</p>
+        </c:when>
+        <c:otherwise>
+            <p class="person-instagram"><a href="https://${fn:escapeXml(person.instagram)}">Instagram</a></p>
+        </c:otherwise>
+    </c:choose>
     <h3>Collections including ${fn:escapeXml(person.first)} </h3>
     <c:choose>
         <c:when test="${empty collectionsofperson}">
