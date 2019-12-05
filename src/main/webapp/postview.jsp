@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
 <style>{
 
 </style>
@@ -41,6 +42,7 @@
             </footer>
     </div>
     <br/>
+
     <div class="w3-card-2" style="width:100%">
     <header class="w3-container w3-pale-red">
     <h5>Related Links:</h5>
@@ -57,8 +59,8 @@
 
     <div class="w3-container w3-cell">
 
-    <div class="w3-card-2" style="width:87%;">
-    <header class="w3-container w3-pale-red">
+    <div class="w3-card-2 w3-round-xxlarge" style="width:87%;">
+    <header class="w3-container w3-theme-l4 w3-round-xxlarge">
     <h5>Collection Tags</h5>
     </header>
     <div class="w3-container">
@@ -67,7 +69,7 @@
             <p>No collectiontags found</p>
         </c:when>
         <c:otherwise>
-          <ul class="w3-ul w3-card-2 w3-col s12">
+          <ul class="w3-ul w3-col s12">
             <c:forEach items="${collectiontags}" var="collection">
                 <li class="w3-display-container">
                     <a href="/readcollection?collectionid=${collection.id}">
@@ -89,8 +91,8 @@
 
     <div class="w3-container w3-cell">
 
-    <div class="w3-card-2" style="width:100%;">
-    <header class="w3-container w3-pale-red">
+    <div class="w3-card-2 w3-round-xxlarge" style="width:100%;">
+    <header class="w3-container w3-theme-l4 w3-round-xxlarge">
     <h5>Person Tags</h5>
     </header>
     <div class="w3-container">
@@ -99,7 +101,7 @@
             <p>No persontags found</p>
         </c:when>
         <c:otherwise>
-          <ul class="w3-ul w3-card-2 w3-col s12">
+          <ul class="w3-ul w3-col s12">
             <c:forEach items="${persontags}" var="person">
                 <li class="w3-display-container">
                     <a href="/read?id=${person.id}">
@@ -117,43 +119,62 @@
     </c:choose>
     </div>
     </div>
-
     </div>
-
     </div>
 
     <br/>
-    <h4>Number of scores: ${post.numOfScores}</h4>
-    <h3>Average Score: ${post.averageScore}</h3>
-    <form action="/updatescore?postid=${post.id}" method="post">
-        <select id="score" name="score">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-        </select>
-        <button type="submit" class="btn btn-success">Score</button>
-    </form>
-    <a href="/createcomment?postid=${post.id}">new comment</a>
-    <c:choose>
-        <c:when test="${empty comments}">
-            <p>No comments found</p>
-        </c:when>
-        <c:otherwise>
-            <c:forEach items="${comments}" var="comment">
-                <div class="media">
-                    <h4>${comment.createdBy} </h4>
-                    <h4> ${comment.content}</h4>
-                </div>
-            </c:forEach>
-        </c:otherwise>
-    </c:choose>
+
+    <div class="w3-card-2" style="width:100%;">
+        <header class="w3-container w3-pale-red">
+        <h5>Comments</h5>
+        </header>
+        <div class="w3-container">
+            <c:choose>
+                    <c:when test="${empty comments}">
+                        <p>No comments found</p>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${comments}" var="comment">
+                            <div class="w3-panel w3-border-bottom">
+                                <p> ${comment.content}</p>
+                                <small>${comment.createdBy} </small>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+            </c:choose>
+            <button class="w3-btn w3-pale-red w3-round-large"> <a href="/createcomment?postid=${post.id}">Add Comment</a></button>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <br/>
+    <div class="w3-card-2" style="width:100%;">
+            <header class="w3-container w3-pale-red">
+            <h5>Score</h5>
+            </header>
+            <div class="w3-container">
+                    <p>Number of scores: ${post.numOfScores}</p>
+                    <p>Average Score: ${post.averageScore}</p>
+                    <form action="/updatescore?postid=${post.id}" method="post">
+                        <select id="score" name="score">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                        <button type="submit" class="btn btn-success">Score</button>
+                    </form>
+            </div>
+    </div>
+    <br/>
+    <br/>
+
 
 </div>

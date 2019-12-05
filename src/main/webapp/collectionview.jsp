@@ -71,21 +71,27 @@
             </c:if>
         </c:otherwise>
     </c:choose>
-
-
-
 </div>
-<h3>Posts including ${fn:escapeXml(collection.collectionName)} </h3>
-<c:choose>
+<br/>
+
+
+
+<div class="w3-card-2" style="width:100%;">
+        <header class="w3-container w3-pale-red">
+        <h3>Posts including ${fn:escapeXml(collection.collectionName)}</h3>
+        </header>
+        <div class="w3-container">
+          <c:choose>
             <c:when test="${empty posts}">
                 <p>No posts found</p>
             </c:when>
             <c:otherwise>
+
                 <c:forEach items="${posts}" var="post">
-                    <div class="media">
+              <div class="w3-panel w3-border w3-round-xxlarge">
                         <a href="/readpost?postid=${post.id}">
                             <div class="media-body">
-                                <h4>${fn:escapeXml(post.title)}</h4>
+                                <h3>${fn:escapeXml(post.title)}</h3>
                             </div>
                         </a>
                         <h5>person tag</h5>
@@ -94,13 +100,8 @@
                                 <p>No persontags found</p>
                             </c:when>
                             <c:otherwise>
-                                <ul class="w3-ul w3-card-2 w3-col s12">
                                     <c:forEach items="${persontagmap[post.id]}" var="persontag">
-                                        <li class="w3-display-container">
-                                            <a href="/read?id=${persontag.id}">
-                                                <p>${persontag.first} ${persontag.last}</p>
-                                            </a>
-                                        </li>
+                                        <span class="w3-button w3-round-large w3-pale-red"><a href="/read?id=${persontag.id}"><p>${persontag.first} ${persontag.last}</p></a></span>
                                     </c:forEach>
                                 </ul>
                             </c:otherwise>
@@ -111,17 +112,14 @@
                                 <p>No collectiontags found</p>
                             </c:when>
                             <c:otherwise>
-                                <ul class="w3-ul w3-card-2 w3-col s12">
                                     <c:forEach items="${collectiontagmap[post.id]}" var="collectiontag">
-                                        <li class="w3-display-container">
-                                            <a href="/readcollection?collectionid=${collectiontag.id}">
-                                                <p>${collectiontag.collectionName}</p>
-                                            </a>
-                                        </li>
+                                        <span class="w3-button w3-round-large w3-pale-red"><a href="/readcollection?collectionid=${collectiontag.id}"><p>${collectiontag.collectionName}</p></a></span>
                                     </c:forEach>
                                 </ul>
                             </c:otherwise>
                         </c:choose>
+                        <br/>
+                        <br/>
                     </div>
                 </c:forEach>
                 <c:if test="${not empty postcursor}">
@@ -131,5 +129,9 @@
                         </ul>
                     </nav>
                 </c:if>
+              </div>
             </c:otherwise>
-        </c:choose>
+           </c:choose>
+  <br/>
+  </div>
+  </div>
